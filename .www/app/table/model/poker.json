@@ -1,0 +1,9 @@
+{
+  "player": null,
+  "enabled": false,
+  "currentPlayer": "",
+  "players": [],
+  "communityCards": [],
+  "playerCards": [],
+  "amount": 0
+}
