@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "node .www/server.js",
+    "lint": "eslint lib test",
     "test": "mocha"
   },
   "author": "Team Platinum",
