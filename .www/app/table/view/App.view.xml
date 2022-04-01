@@ -7,6 +7,7 @@
             <ToolbarSpacer />
             <core:Icon src="sap-icon://person-placeholder" />
             <Text text="{/player/name}" />
+            <Button icon="sap-icon://log" press="logout" />
           </OverflowToolbar>
         </headerContent>
         <content>
@@ -23,6 +24,27 @@
                         <Column>
                           <Text text="{i18n>Cash}" />
                         </Column>
+                      </columns>
+                      <items>
+                        <ColumnListItem>
+                          <cells>
+                            <Text text="{name}" />
+                            <Text text="{cash}" />
+                          </cells>
+                        </ColumnListItem>
+                      </items>
+                    </Table>
+                  </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+              </uxap:ObjectPageSection>
+              <uxap:ObjectPageSection title="{i18n>Bets}" titleUppercase="false">
+                <uxap:subSections>
+                  <uxap:ObjectPageSubSection>
+                    <Table items="{/bets}" width="auto" class="sapUxAPObjectPageSubSectionAlignContent">
+                      <columns>
+                        <Column>
+                          <Text text="{i18n>Name}" />
+                        </Column>
                         <Column>
                           <Text text="{i18n>Bet}" />
                         </Column>
@@ -31,7 +53,6 @@
                         <ColumnListItem>
                           <cells>
                             <Text text="{name}" />
-                            <Text text="{cash}" />
                             <Text text="{bet}" />
                           </cells>
                         </ColumnListItem>
@@ -40,11 +61,18 @@
                   </uxap:ObjectPageSubSection>
                 </uxap:subSections>
               </uxap:ObjectPageSection>
+              <uxap:ObjectPageSection title="{i18n>Pot}" titleUppercase="false">
+                <uxap:subSections>
+                  <uxap:ObjectPageSubSection>
+                    <ObjectNumber class="sapMObjectNumberLarge" number="{/pot}" state="Information" />
+                  </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+              </uxap:ObjectPageSection>
               <uxap:ObjectPageSection title="{i18n>CommunityCards}" titleUppercase="false">
                 <uxap:subSections>
                   <uxap:ObjectPageSubSection>
                     <HBox items="{/communityCards}" class="playingCards">
-                      <controls:Card kind="{kind}" suit="{suit}" />
+                      <controls:Card suit="{suit}" rank="{rank}" />
                     </HBox>
                   </uxap:ObjectPageSubSection>
                 </uxap:subSections>
@@ -53,7 +81,7 @@
                 <uxap:subSections>
                   <uxap:ObjectPageSubSection>
                     <HBox items="{/playerCards}" class="playingCards">
-                      <controls:Card kind="{kind}" suit="{suit}" />
+                      <controls:Card suit="{suit}" rank="{rank}" />
                     </HBox>
                   </uxap:ObjectPageSubSection>
                 </uxap:subSections>

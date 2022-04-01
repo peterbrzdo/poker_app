@@ -48,7 +48,7 @@
       },
       "": {
         "type": "sap.ui.model.json.JSONModel",
-        "uri": "model/poker.json"
+        "uri": "model/table.json"
       }
     },
     "resources": {

@@ -2,12 +2,12 @@ sap.ui.define([
   'sap/ui/core/mvc/Controller',
   'sap/m/MessageBox',
   'cc/ase/poker/table/util/cookies',
-  'cc/ase/poker/table/util/poker'
+  'cc/ase/poker/table/util/table'
 ], (
   Controller,
   MessageBox,
   cookies,
-  poker
+  table
 ) => {
   return Controller.extend('cc.ase.poker.table.controller.App', {
     onInit(...args) {
@@ -39,16 +39,21 @@ sap.ui.define([
     async _updateModel() {
       try {
         const player = this._getPlayer()
-        const { currentPlayer, players, communityCards, playerCards } = await poker.fetchTable()
+        const { currentPlayer, players, bets, pot, communityCards, playerCards } = await table.fetch()
         const view = this.getView()
         const model = view.getModel()
         model.setProperty('/', Object.assign({}, model.getProperty('/'), {
           player,
           currentPlayer,
           players,
+          bets: Object.entries(bets).map(([id, bet]) => {
+            const name = players.find(p => p.id === id)?.name
+            return { name, bet }
+          }),
+          pot,
           communityCards,
           playerCards,
-          enabled: currentPlayer === player.name
+          enabled: currentPlayer.name === player.name
         }))
       } catch ({ message, stack }) {
         console.error(stack)
@@ -62,7 +67,7 @@ sap.ui.define([
         const model = view.getModel()
         const { player, players } = model.getProperty('/')
         if (!players.find(({ name }) => name === player.name)) {
-          await poker.joinTable()
+          await table.join()
         }
       } catch ({ message, stack }) {
         console.error(stack)
@@ -70,13 +75,17 @@ sap.ui.define([
       }
     },
 
-    async action(action, args) {
+    async action(action, ...args) {
       try {
-        await poker.performAction(action, args)
+        await table.action(action, ...args)
       } catch ({ message, stack }) {
         console.error(stack)
         MessageBox.error(message)
       }
+    },
+
+    logout() {
+      window.location.replace(`${window.location.origin}/login`)
     }
   })
 })

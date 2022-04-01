@@ -4,37 +4,37 @@ sap.ui.define(['sap/ui/core/Control'], Control => Control.extend('cc.ase.poker.t
       suit: {
         type: 'string'
       },
-      kind: {
+      rank: {
         type: 'string'
       }
     }
   },
 
   _renderRank() {
-    let rank = ''
-    const kind = this.getKind()
-    switch (kind) {
+    let renderRank = ''
+    const rank = this.getRank()
+    switch (rank) {
       case 'jack':
-        rank = 'J'
+        renderRank = 'J'
         break
       case 'queen':
-        rank = 'Q'
+        renderRank = 'Q'
         break
       case 'king':
-        rank = 'K'
+        renderRank = 'K'
         break
       case 'ace':
-        rank = 'A'
+        renderRank = 'A'
         break
       default:
-        rank = kind
+        renderRank = rank
     }
-    return rank
+    return renderRank
   },
 
   _renderSuit() {
-    const suit = this.getSuit()
-    return suit === 'diamonds' ? 'diams' : suit
+    const renderSuit = this.getSuit()
+    return renderSuit === 'diamonds' ? 'diams' : renderSuit
   },
 
   renderer(oRM, oControl) {

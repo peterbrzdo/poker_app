@@ -1,8 +1,8 @@
 import express from 'express'
 import auth from './routes/auth.js'
-import poker from './routes/poker.js'
+import poker from './routes/table.js'
 
-export default (table) => {
+export default ({ table }) => {
   const app = express()
 
   app.use('/login', express.static('.www/app/login'))

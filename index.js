@@ -1,6 +1,6 @@
-import Card from './lib/poker/Card.js'
-import Deck from './lib/poker/Deck.js'
-import Player from './lib/poker/Player.js'
-import Table from './lib/poker/Table.js'
+import Card from './lib/Card.js'
+import Deck from './lib/Deck.js'
+import Player from './lib/Player.js'
+import Table from './lib/Table.js'
 
 export { Card, Deck, Player, Table }

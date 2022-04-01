@@ -11,18 +11,20 @@ sap.ui.define([], () => {
   }
 
   return {
-    async fetchTable() {
+    async fetch() {
       const response = await _fetch(API_PATH)
-      const { currentPlayer, players, communityCards, playerCards } = await response.json()
+      const { currentPlayer, players, communityCards, playerCards, bets, pot } = await response.json()
       return {
         currentPlayer,
         players,
         communityCards,
-        playerCards
+        playerCards,
+        bets,
+        pot
       }
     },
 
-    async joinTable() {
+    async join() {
       await _fetch(`${API_PATH}/players`, {
         method: 'POST',
         headers: {
@@ -31,7 +33,7 @@ sap.ui.define([], () => {
       })
     },
 
-    async performAction(type, ...args) {
+    async action(type, ...args) {
       await _fetch(`${API_PATH}/actions`, {
         method: 'POST',
         headers: {
