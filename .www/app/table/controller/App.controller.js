@@ -39,10 +39,11 @@ sap.ui.define([
     async _updateModel() {
       try {
         const player = this._getPlayer()
-        const { currentPlayer, players, bets, pot, communityCards, playerCards } = await table.fetch()
+        const { game, currentPlayer, players, bets, pot, communityCards, playerCards, winner, winnerHand } = await table.fetch()
         const view = this.getView()
         const model = view.getModel()
         model.setProperty('/', Object.assign({}, model.getProperty('/'), {
+          game,
           player,
           currentPlayer,
           players,
@@ -53,6 +54,8 @@ sap.ui.define([
           pot,
           communityCards,
           playerCards,
+          winner,
+          winnerHand,
           enabled: currentPlayer.name === player.name
         }))
       } catch ({ message, stack }) {

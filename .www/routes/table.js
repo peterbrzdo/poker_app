@@ -1,18 +1,23 @@
 import express from 'express'
 
+const playerToObject = ({ id, name, cash }) => ({ id, name, cash })
+const cardToObject = ({ suit, rank }) => ({ suit, rank })
+
 export default (table) => {
   const router = express.Router()
 
   // get game details
   router.get('/', ({ user: { id: playerId } }, res, next) => {
-    const { id, name, cash } = table.currentPlayer()
     const data = {
-      players: table.players().map(({ id, name, cash }) => ({ id, name, cash })),
-      currentPlayer: { id, name, cash },
-      communityCards: table.communityCards().map(({ suit, rank }) => ({ suit, rank })),
-      playerCards: table.playerCards(playerId).map(({ suit, rank }) => ({ suit, rank })),
+      game: table.game(),
+      players: table.players().map(playerToObject),
+      currentPlayer: playerToObject(table.currentPlayer()),
+      communityCards: table.communityCards().map(cardToObject),
+      playerCards: table.playerCards(playerId).map(cardToObject),
       bets: table.bets(),
-      pot: table.pot()
+      pot: table.pot(),
+      winner: playerToObject(table.winner()),
+      winnerHand: table.winnerHand().map(cardToObject)
     }
     res.json(data)
   })
