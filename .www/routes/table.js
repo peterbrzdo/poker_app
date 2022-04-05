@@ -1,6 +1,12 @@
 import express from 'express'
 
-const playerToObject = ({ id, name, cash }) => ({ id, name, cash })
+const playerToObject = player => {
+  if (!player) {
+    return null
+  }
+  const { id, name, cash } = player
+  return { id, name, cash }
+}
 const cardToObject = ({ suit, rank }) => ({ suit, rank })
 
 export default (table) => {

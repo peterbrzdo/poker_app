@@ -47,16 +47,16 @@ sap.ui.define([
           player,
           currentPlayer,
           players,
-          bets: Object.entries(bets).map(([id, bet]) => {
+          bets: bets ? Object.entries(bets).map(([id, bet]) => {
             const name = players.find(p => p.id === id)?.name
             return { name, bet }
-          }),
+          }) : [],
           pot,
           communityCards,
           playerCards,
           winner,
           winnerHand,
-          enabled: currentPlayer.name === player.name
+          enabled: currentPlayer?.name === player.name
         }))
       } catch ({ message, stack }) {
         console.error(stack)

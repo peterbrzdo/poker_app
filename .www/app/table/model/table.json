@@ -5,10 +5,10 @@
   "players": [],
   "communityCards": [],
   "playerCards": [],
-  "bets": null,
+  "bets": [],
   "pot": 0,
   "winner:": null,
-  "winnerHand": null,
+  "winnerHand": [],
   "enabled": false,
   "amount": 0
 }
