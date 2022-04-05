@@ -54,12 +54,16 @@ describe.only('deck', function () {
 
   describe('draw', function () {
     it('should draw the correct count', function () {
-      const { cards: cardsBeforeDraw } = deck
-      const count = 100
+      const cardsBeforeDraw = [...deck.cards]
+      const count = 7
       const drawnCards = deck.draw(count)
       expect(drawnCards).to.have.length(7)
-      const { cards: cardsAfterDraw } = deck
+      const cardsAfterDraw = [...deck.cards]
       expect(cardsAfterDraw).to.have.length(cardsBeforeDraw.length - count)
+    })
+
+    it('should throw an error when drawing invalid count', function () {
+      expect(() => deck.draw(deck.cards.length + 1)).to.throw(Error, 'Not enough remaining cards')
     })
   })
 })
