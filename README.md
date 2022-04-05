@@ -28,8 +28,16 @@ You can then browse to <http://localhost:3000/>
 
       Can be used as it is.
 
+  - `lib/game.js` contains game state contants
+
+      Can be used as it is.
+
   - `lib/table` contains the code for the `Table` class
 
       This is the starting point for your code.
 
       You need to add your own code to this file to implement the full game.
+
+      Look for each `// TODO: implement` comment.
+
+      Also make sure to return the correct values and types for each method.
