@@ -36,8 +36,8 @@ You can then browse to <http://localhost:3000/>
 
       This is the starting point for your code.
 
-      You need to add your own code to this file to implement the full game.
+      You need to add your own code to this file to implement the full game logic.
 
-      Look for each `// TODO: implement` comment.
+      Look for any `// TODO: implement` comment.
 
       Also make sure to return the correct values and types for each method.
