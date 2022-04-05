@@ -2,11 +2,11 @@ import { expect } from 'chai'
 import { Card } from '../index.js'
 
 describe('card', function () {
-  const suit = Card.SUITS[1]
-  const rank = Card.RANKS[1]
   let card = null
 
   beforeEach(function () {
+    const suit = Card.SUITS[1]
+    const rank = Card.RANKS[1]
     card = new Card({ suit, rank })
   })
 
@@ -16,17 +16,17 @@ describe('card', function () {
     })
   })
 
-  describe('rank', function () {
-    it('should have the correct rank', function () {
-      const { rank: actualRank } = card
-      expect(actualRank).to.be.equal(rank)
+  describe('suit', function () {
+    it('should have the correct suit', function () {
+      const { suit } = card
+      expect(suit).to.be.equal(Card.SUITS[1])
     })
   })
 
-  describe('suit', function () {
-    it('should have the correct suit', function () {
-      const { suit: actualSuit } = card
-      expect(actualSuit).to.be.equal(suit)
+  describe('rank', function () {
+    it('should have the correct rank', function () {
+      const { rank } = card
+      expect(rank).to.be.equal(Card.RANKS[1])
     })
   })
 

@@ -72,7 +72,6 @@
                 <uxap:subSections>
                   <uxap:ObjectPageSubSection>
                     <VBox>
-                      <ObjectStatus class="sapUiSmallMarginBottom" text="{/game}" icon="sap-icon://information" state="Information" />
                       <HBox items="{/communityCards}" class="playingCards">
                         <controls:Card suit="{suit}" rank="{rank}" />
                       </HBox>

@@ -1,5 +1,5 @@
 {
-  "game": "pre-flop",
+  "game": "init",
   "player": null,
   "currentPlayer": null,
   "players": [],
