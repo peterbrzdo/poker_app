@@ -27,9 +27,9 @@ describe('deck', function () {
       expect(cards.length).to.eql(numberOfCards)
       for (let i = 0; i < cards.length; i++) {
         const foundCard = expectedCards.find(
-          (card) => card.rank === cards[i].rank && card.suit === cards[i].suit
+          ({ rank, suit }) => rank === cards[i].rank && suit === cards[i].suit
         )
-        expect(foundCard).to.not.undefined
+        expect(foundCard).to.not.be.undefined
       }
     })
   })
