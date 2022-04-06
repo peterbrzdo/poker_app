@@ -1,12 +1,11 @@
-import { Deck, Table } from '../index.js'
+import { TableService } from '../index.js'
 import application from './application.js'
 
-const deck = new Deck()
-const table = new Table({ deck })
+const tableService = new TableService()
 
 const { PORT = 3000 } = process.env
 
-const app = application({ table })
+const app = application({ tableService })
 
 app
   .listen(PORT, () => console.info(`Server is listening on http://localhost:${PORT}`))
