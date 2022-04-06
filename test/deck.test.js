@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { Deck, Card } from '../index.js'
 
-describe.only('deck', function () {
+describe('deck', function () {
   let deck = null
 
   beforeEach(function () {

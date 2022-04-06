@@ -1,5 +1,5 @@
 {
-  "game": "init",
+  "game": 0,
   "player": null,
   "currentPlayer": null,
   "players": [],
@@ -9,6 +9,12 @@
   "pot": 0,
   "winner:": null,
   "winnerHand": [],
-  "enabled": false,
+  "actions": {
+    "enabled": false
+  },
+  "start": {
+    "visible": false,
+    "enabled": false
+  },
   "amount": 0
 }

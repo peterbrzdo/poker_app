@@ -56,7 +56,13 @@ sap.ui.define([
           playerCards,
           winner,
           winnerHand,
-          enabled: currentPlayer?.name === player.name
+          start: {
+            visible: player.id === players?.[0]?.id,
+            enabled: (game === 0 || game === 5) && (players.length > 1)
+          },
+          actions: {
+            enabled: currentPlayer?.name === player.name
+          }
         }))
       } catch ({ message, stack }) {
         console.error(stack)
@@ -72,6 +78,15 @@ sap.ui.define([
         if (!players.find(({ name }) => name === player.name)) {
           await table.join()
         }
+      } catch ({ message, stack }) {
+        console.error(stack)
+        MessageBox.error(message)
+      }
+    },
+
+    async start() {
+      try {
+        await table.start()
       } catch ({ message, stack }) {
         console.error(stack)
         MessageBox.error(message)

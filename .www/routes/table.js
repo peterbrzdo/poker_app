@@ -36,6 +36,14 @@ export default (table) => {
       .end()
   })
 
+  // start game
+  router.post('/start', (req, res, next) => {
+    table.start()
+    res
+      .status(204)
+      .end()
+  })
+
   // actions
   router.post('/actions', express.json(), ({ user: { id: playerId }, body: { type: action, args = [] } }, res, next) => {
     table.performAction(playerId, action, ...args)
