@@ -9,28 +9,28 @@ const playerToObject = player => {
 }
 const cardToObject = ({ suit, rank }) => ({ suit, rank })
 
-export default (table) => {
+export default (tableService) => {
   const router = express.Router()
 
   // get game details
   router.get('/', ({ user: { id: playerId } }, res, next) => {
     const data = {
-      game: table.game(),
-      players: table.players().map(playerToObject),
-      currentPlayer: playerToObject(table.currentPlayer()),
-      communityCards: table.communityCards().map(cardToObject),
-      playerCards: table.playerCards(playerId).map(cardToObject),
-      bets: table.bets(),
-      pot: table.pot(),
-      winner: playerToObject(table.winner()),
-      winnerHand: table.winnerHand().map(cardToObject)
+      game: tableService.game(),
+      players: tableService.players().map(playerToObject),
+      currentPlayer: playerToObject(tableService.currentPlayer()),
+      communityCards: tableService.communityCards().map(cardToObject),
+      playerCards: tableService.playerCards(playerId).map(cardToObject),
+      bets: tableService.bets(),
+      pot: tableService.pot(),
+      winner: playerToObject(tableService.winner()),
+      winnerHand: tableService.winnerHand().map(cardToObject)
     }
     res.json(data)
   })
 
   // join game
   router.post('/players', ({ user: { id: playerId, name } }, res, next) => {
-    table.addPlayer({ id: playerId, name })
+    tableService.addPlayer({ id: playerId, name })
     res
       .status(204)
       .end()
@@ -46,7 +46,7 @@ export default (table) => {
 
   // actions
   router.post('/actions', express.json(), ({ user: { id: playerId }, body: { type: action, args = [] } }, res, next) => {
-    table.performAction(playerId, action, ...args)
+    tableService.performAction(playerId, action, ...args)
     res
       .status(204)
       .end()
