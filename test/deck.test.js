@@ -16,6 +16,7 @@ describe('deck', function () {
 
   describe('cards', function () {
     it('should have the correct cards initially', function () {
+      const numberOfCards = 52
       const expectedCards = []
       for (const suit of Card.SUITS) {
         for (const rank of Card.RANKS) {
@@ -23,11 +24,12 @@ describe('deck', function () {
         }
       }
       const { cards } = deck
+      expect(cards.length).to.eql(numberOfCards)
       for (let i = 0; i < cards.length; i++) {
-        const { suit: expectedSuit, rank: expectedRank } = expectedCards[i]
-        const { suit, rank } = cards[i]
-        expect(suit).to.equal(expectedSuit)
-        expect(rank).to.equal(expectedRank)
+        const foundCard = expectedCards.find(
+          (card) => card.rank === cards[i].rank && card.suit === cards[i].suit
+        )
+        expect(foundCard).to.not.undefined
       }
     })
   })
