@@ -1,6 +1,6 @@
 import express from 'express'
 import auth from './routes/auth.js'
-import poker from './routes/table.js'
+import table from './routes/table.js'
 
 export default ({ tableService }) => {
   const app = express()
@@ -11,7 +11,7 @@ export default ({ tableService }) => {
 
   app.use('/', express.static('.www/app/table'))
 
-  app.use('/api/v1', poker(tableService))
+  app.use('/api/v1', table({ tableService }))
 
   app.use(({ stack, message, code = 500 }, req, res, next) => {
     console.error(stack)

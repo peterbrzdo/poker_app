@@ -9,15 +9,15 @@ const playerToObject = player => {
 }
 const cardToObject = ({ suit, rank }) => ({ suit, rank })
 
-export default (tableService) => {
+export default ({ tableService }) => {
   const router = express.Router()
 
   // get game details
   router.get('/', ({ user: { id } }, res, next) => {
-    const { game, players, currentPlayer, communityCards, bets, pot, winner, winnerHand } = tableService
+    const { state, players, currentPlayer, communityCards, bets, pot, winner, winnerHand } = tableService
     const playerCards = tableService.getPlayerCards(id)
     const snapshot = {
-      game,
+      state,
       players: players.map(playerToObject),
       currentPlayer: playerToObject(currentPlayer),
       communityCards: communityCards.map(cardToObject),
@@ -49,8 +49,8 @@ export default (tableService) => {
   })
 
   // actions
-  router.post('/actions', express.json(), ({ user: { id: playerId }, body: { type: action, args = [] } }, res, next) => {
-    tableService.performAction(playerId, action, ...args)
+  router.post('/actions', express.json(), ({ body: { type: action, args = [] } }, res, next) => {
+    tableService.performAction(action, ...args)
     res
       .status(204)
       .end()

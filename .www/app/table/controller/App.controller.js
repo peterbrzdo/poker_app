@@ -39,11 +39,11 @@ sap.ui.define([
     async _updateModel() {
       try {
         const player = this._getPlayer()
-        const { game, currentPlayer, players, bets, pot, communityCards, playerCards, winner, winnerHand } = await table.fetch()
+        const { state, currentPlayer, players, bets, pot, communityCards, playerCards, winner, winnerHand } = await table.fetch()
         const view = this.getView()
         const model = view.getModel()
         model.setProperty('/', Object.assign({}, model.getProperty('/'), {
-          game,
+          state,
           player,
           currentPlayer,
           players,
@@ -58,7 +58,7 @@ sap.ui.define([
           winnerHand,
           start: {
             visible: player.id === players?.[0]?.id,
-            enabled: (game === 0 || game === 5) && (players.length > 1)
+            enabled: (state === 0 || state === 5) && (players.length > 1)
           },
           actions: {
             enabled: currentPlayer?.name === player.name
