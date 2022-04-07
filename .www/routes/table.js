@@ -38,7 +38,7 @@ export default (tableService) => {
 
   // start game
   router.post('/start', (req, res, next) => {
-    table.start()
+    tableService.start()
     res
       .status(204)
       .end()
