@@ -34,26 +34,6 @@ describe('deck', function () {
     })
   })
 
-  describe('shuffle', function () {
-    it('should shuffle cards', function () {
-      const unexpectedCards = []
-      for (const suit of Card.SUITS) {
-        for (const rank of Card.RANKS) {
-          unexpectedCards.push(new Card({ suit, rank }))
-        }
-      }
-      deck.shuffle()
-      let allEqual = true
-      const { cards } = deck
-      for (let i = 0; i < cards.length; i++) {
-        const { suit: unexpectedSuit, rank: unexpectedRank } = unexpectedCards[i]
-        const { suit, rank } = cards[i]
-        allEqual = allEqual && (unexpectedSuit === suit) && (unexpectedRank === rank)
-      }
-      expect(allEqual).to.be.false
-    })
-  })
-
   describe('draw', function () {
     it('should draw the correct count', function () {
       const cardsBeforeDraw = [...deck.cards]

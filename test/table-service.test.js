@@ -11,7 +11,7 @@ describe('tableService', function () {
         new Player({ id: 'wyatt-earp', name: 'Wyatt Earp', cash: 95 })
       ]
       const table = new TableService()
-      const actualPlayers = table.players()
+      const actualPlayers = table.players
       for (let i = 0; i < actualPlayers.length; i++) {
         const { id: actualId, name: actualName, cash: actualCash } = actualPlayers[i]
         const { id: expectedId, name: expectedName, cash: expectedCash } = expectedPlayers[i]
