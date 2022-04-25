@@ -16,6 +16,10 @@ You can then browse to <http://localhost:3000/>
 
 - `lib` folder contains the code for the poker game
 
+  - `lib/action.js` contains constants for game actions.
+
+      Can be used as it is.
+
   - `lib/card.js` contains the code for the `Card` class
 
       Can be used as it is.
