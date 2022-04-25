@@ -45,3 +45,13 @@ You can then browse to <http://localhost:3000/>
       Look for any `// TODO: implement` comment.
 
       Also make sure to return the correct values and types for each method.
+      
+## Scripts
+
+- `npm start`: starts the application server
+
+- `npm test`: runs the tests
+
+- `npm run lint`: runs static code checks
+
+- `npm run watch`: starts and restarts the the application server on any code changes
