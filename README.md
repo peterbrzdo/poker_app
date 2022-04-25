@@ -28,11 +28,11 @@ You can then browse to <http://localhost:3000/>
 
       Can be used as it is.
 
-  - `lib/game.js` contains game state contants
+  - `lib/state.js` contains game state contants
 
       Can be used as it is.
 
-  - `lib/table` contains the code for the `Table` class
+  - `lib/table-service.js` contains the code for the `TableService` class
 
       This is the starting point for your code.
 
