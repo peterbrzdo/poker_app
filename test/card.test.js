@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { Card } from '../index.js'
 
-describe('card', function () {
+describe('Card', function () {
   let card = null
 
   beforeEach(function () {
@@ -10,7 +10,7 @@ describe('card', function () {
     card = new Card({ suit, rank })
   })
 
-  describe('constructor', function () {
+  describe('constructor()', function () {
     it('should create an instance', function () {
       expect(card).to.be.an.instanceof(Card)
     })
@@ -30,7 +30,7 @@ describe('card', function () {
     })
   })
 
-  describe('compareTo', function () {
+  describe('compareTo()', function () {
     it('should be less compared to another card', function () {
       const other = new Card({ suit: Card.SUITS[2], rank: Card.RANKS[2] })
       const compared = card.compareTo(other)

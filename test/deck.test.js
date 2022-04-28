@@ -1,14 +1,14 @@
 import { expect } from 'chai'
 import { Deck, Card } from '../index.js'
 
-describe('deck', function () {
+describe('Deck', function () {
   let deck = null
 
   beforeEach(function () {
     deck = new Deck()
   })
 
-  describe('constructor', function () {
+  describe('constructor()', function () {
     it('should create an instance', function () {
       expect(deck).to.be.an.instanceof(Deck)
     })
@@ -34,7 +34,7 @@ describe('deck', function () {
     })
   })
 
-  describe('draw', function () {
+  describe('draw()', function () {
     it('should draw the correct count', function () {
       const cardsBeforeDraw = [...deck.cards]
       const count = 7

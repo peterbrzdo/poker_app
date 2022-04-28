@@ -1,7 +1,7 @@
 import { TableService } from '../index.js'
 import application from './application.js'
 
-const tableService = new TableService()
+const tableService = TableService.getInstance()
 
 const { PORT = 3000 } = process.env
 
