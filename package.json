@@ -13,6 +13,7 @@
     "watch": "nodemon --watch lib .www/server.js",
     "lint": "eslint lib test",
     "test": "mocha",
+    "test:smoketest": "mocha \"smoketest/*.js\" ",
     "test:coverage": "c8 --check-coverage --lines 95 --functions 95 --branches 95 npm test"
   },
   "author": "Team Platinum",
