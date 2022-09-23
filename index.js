@@ -3,5 +3,6 @@ import Deck from './lib/deck.js'
 import Player from './lib/player.js'
 import TableService from './lib/table-service.js'
 import Winners from './lib/winners.js'
+import BestHand from './lib/best-hand.js'
 
-export { Card, Deck, Player, TableService, Winners }
+export { BestHand, Card, Deck, Player, TableService, Winners }
