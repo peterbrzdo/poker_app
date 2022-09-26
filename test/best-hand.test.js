@@ -140,5 +140,33 @@ describe.only('BestHand', () => {
     ])
   })
 
-  // TODO: Test for staight flush and royal flush
+  it('returns (highest) straight flush', () => {
+    const playerCards = buildCards([['hearts', 'queen'], ['hearts', 'king']])
+    const communityCards = buildCards([
+      ['clubs', 'queen'], ['hearts', '10'], ['hearts', 'jack'], ['hearts', '9'], ['hearts', '8']
+    ])
+
+    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    expect(type).to.equal(BestHand.STRAIGHT_FLUSH)
+    expect(hand).to.include.deep.members([
+      ...buildCards([
+        ['hearts', 'king'], ['hearts', 'queen'], ['hearts', 'jack'], ['hearts', '10'], ['hearts', '9']
+      ])
+    ])
+  })
+
+  it('returns royal flush', () => {
+    const playerCards = buildCards([['diamonds', 'queen'], ['diamonds', 'king']])
+    const communityCards = buildCards([
+      ['clubs', 'ace'], ['diamonds', '10'], ['diamonds', 'jack'], ['diamonds', 'ace'], ['clubs', 'jack']
+    ])
+
+    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    expect(type).to.equal(BestHand.ROYAL_FLUSH)
+    expect(hand).to.include.deep.members([
+      ...buildCards([
+        ['hearts', 'ace'], ['diamonds', 'king'], ['diamonds', 'queen'], ['diamonds', 'jack'], ['diamonds', '10']
+      ])
+    ])
+  })
 })
