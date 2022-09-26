@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { Card, BestHand } from '../index.js'
 
-describe.only('BestHand', () => {
+describe('BestHand', () => {
   const buildCards = (cardTuples) => {
     return cardTuples.map(([suit, rank]) => new Card({ suit, rank }))
   }
