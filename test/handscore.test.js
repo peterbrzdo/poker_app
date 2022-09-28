@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { BestHand, Card, Handscore } from '../index.js'
 
-describe.only('Handscore', () => {
+describe('Handscore', () => {
   const hex = (number) => {
     return parseInt(number, 16)
   }
