@@ -16,14 +16,14 @@ describe('Handscore', () => {
       hand: buildCards([
         ['diamonds', 'ace'], ['clubs', 'jack'], ['spades', '10'], ['hearts', '8'], ['diamonds', '4']
       ])
-    })).to.be.equal(hex('1C9862'))
+    })).to.be.equal(hex('10000C'))
 
     expect(new Handscore().calculate({
       type: BestHand.HIGHEST_CARD,
       hand: buildCards([
         ['hearts', '9'], ['clubs', '7'], ['spades', '5'], ['hearts', '3'], ['diamonds', '2']
       ])
-    })).to.be.equal(hex('175310'))
+    })).to.be.equal(hex('100007'))
   })
 
   it('returns the correct score for PAIR', () => {
@@ -32,14 +32,14 @@ describe('Handscore', () => {
       hand: buildCards([
         ['diamonds', 'king'], ['clubs', 'king'], ['spades', '10'], ['hearts', '8'], ['diamonds', '4']
       ])
-    })).to.be.equal(hex('2BB862'))
+    })).to.be.equal(hex('2000BB'))
 
     expect(new Handscore().calculate({
       type: BestHand.PAIR,
       hand: buildCards([
-        ['hearts', '2'], ['spades', '2'], ['spades', '10'], ['hearts', '7'], ['diamonds', '4']
+        ['hearts', '3'], ['spades', '3'], ['spades', '10'], ['hearts', '7'], ['diamonds', '4']
       ])
-    })).to.be.equal(hex('200852'))
+    })).to.be.equal(hex('200011'))
   })
 
   it('returns the correct score for TWO_PAIRS', () => {

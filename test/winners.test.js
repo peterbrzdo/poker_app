@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { Card, Player, Winners } from '../index.js'
 
-describe.only('Winners', () => {
+describe('Winners', () => {
   const buildCards = (cardTuples) => {
     return cardTuples.map(([suit, rank]) => new Card({ suit, rank }))
   }
@@ -18,13 +18,13 @@ describe.only('Winners', () => {
         ['diamonds', 'ace'], ['clubs', 'ace'], ['spades', 'king'], ['hearts', 'king'], ['clubs', 'king']
       ])
       const winners = new Winners([player1], [cards1], communityCards).determine()
-      expect(winners).to.deep.equal([{
+      expect(winners).to.deep.equal({
         winner: player1,
         winningHand: communityCards
-      }])
+      })
   })
 
-  it.only('returns a winner with his winning hand', () => {
+  it('returns a winner with his winning hand', () => {
     const [player1, cards1] = buildPlayerAndPlayerCards([['spades', '2'], ['diamonds', '5']])
     const [player2, cards2] = buildPlayerAndPlayerCards([['spades', 'ace'], ['diamonds', '4']], 'pat-garret')
     const communityCards = buildCards([
