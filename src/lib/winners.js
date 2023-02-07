@@ -12,30 +12,30 @@ export default class Winners {
   }
 
   determine() {
-    const sortedPlayersWithScores =  this.#sortedPlayersWithScores()
+    const sortedPlayersWithScores = this.#sortedPlayersWithScores()
 
     return this.#winnersWithSameScores(sortedPlayersWithScores)
   }
 
   #sortedPlayersWithScores() {
     return this.#playerCards
-    .map((playerCards, idx) => {
-      return {
-        player: this.#players[idx],
-        bestHand: new BestHand(playerCards, this.#communityCards).determine()
-      }
-    })
-    .map(({ player, bestHand }) => {
-      const score = new Handscore().calculate(bestHand)
-      return {
-        player,
-        bestHand,
-        score
-      }
-    })
-    .sort(({ score: score1 }, { score: score2 }) => {
-      return score2 - score1
-    })
+      .map((playerCards, idx) => {
+        return {
+          player: this.#players[idx],
+          bestHand: new BestHand(playerCards, this.#communityCards).determine()
+        }
+      })
+      .map(({ player, bestHand }) => {
+        const score = new Handscore().calculate(bestHand)
+        return {
+          player,
+          bestHand,
+          score
+        }
+      })
+      .sort(({ score: score1 }, { score: score2 }) => {
+        return score2 - score1
+      })
   }
 
   #winnersWithSameScores(sortedPlayersWithScores) {

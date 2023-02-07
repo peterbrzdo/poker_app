@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { BestHand, Card, Handscore } from '../index.js'
+import { BestHand, Card, Handscore } from '../src/index.js'
 
 describe('Handscore', () => {
   const hex = (number) => {

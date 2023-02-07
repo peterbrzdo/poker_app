@@ -1,4 +1,4 @@
-import { TableService } from '../index.js'
+import { TableService } from '../src/index.js'
 import application from './application.js'
 
 const tableService = TableService.getInstance()

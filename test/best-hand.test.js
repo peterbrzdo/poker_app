@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Card, BestHand } from '../index.js'
+import { Card, BestHand } from '../src/index.js'
 
 describe('BestHand', () => {
   const buildCards = (cardTuples) => {
@@ -20,7 +20,7 @@ describe('BestHand', () => {
       ['clubs', 'jack'], ['spades', 'ace'], ['hearts', 'king'], ['diamonds', '9'], ['spades', '10']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.HIGHEST_CARD)
     expect(json(hand)).to.equal(jsonCards([
       ['spades', 'ace'], ['hearts', 'king'], ['clubs', 'jack'], ['spades', '10'], ['diamonds', '9']
@@ -33,7 +33,7 @@ describe('BestHand', () => {
       ['spades', '2'], ['hearts', '3'], ['diamonds', '9'], ['clubs', 'jack'], ['spades', '10']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.HIGHEST_CARD)
     expect(json(hand)).to.equal(jsonCards([
       ['spades', 'ace'], ['hearts', 'king'], ['clubs', 'jack'], ['spades', '10'], ['diamonds', '9']
@@ -46,7 +46,7 @@ describe('BestHand', () => {
       ['spades', '2'], ['hearts', '3'], ['diamonds', '10'], ['clubs', '5'], ['spades', '6']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.PAIR)
     expect(json(hand)).to.equal(jsonCards([
       ['spades', 'ace'], ['hearts', 'ace'], ['diamonds', '10'], ['spades', '6'], ['clubs', '5']
@@ -59,7 +59,7 @@ describe('BestHand', () => {
       ['spades', '2'], ['hearts', '10'], ['diamonds', '10'], ['clubs', '5'], ['spades', '6']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.PAIR)
 
     expect(json(hand)).to.equal(jsonCards([
@@ -73,11 +73,11 @@ describe('BestHand', () => {
       ['spades', '2'], ['hearts', 'king'], ['diamonds', 'king'], ['clubs', '5'], ['spades', '6']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.TWO_PAIRS)
 
     expect(json(hand)).to.equal(jsonCards([
-      ['hearts', 'king'], ['diamonds', 'king'], ['spades', '10'], ['hearts', '10'] , ['spades', '6']
+      ['hearts', 'king'], ['diamonds', 'king'], ['spades', '10'], ['hearts', '10'], ['spades', '6']
     ]))
   })
 
@@ -87,11 +87,11 @@ describe('BestHand', () => {
       ['spades', '2'], ['hearts', '10'], ['diamonds', 'king'], ['clubs', '5'], ['clubs', '7']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.THREE_OF_A_KIND)
 
     expect(json(hand)).to.equal(jsonCards([
-      ['spades', 'king'], ['hearts', 'king'], ['diamonds', 'king'], ['hearts', '10'] , ['clubs', '7']
+      ['spades', 'king'], ['hearts', 'king'], ['diamonds', 'king'], ['hearts', '10'], ['clubs', '7']
     ]))
   })
 
@@ -101,10 +101,10 @@ describe('BestHand', () => {
       ['spades', '10'], ['clubs', '10'], ['diamonds', 'king'], ['clubs', '5'], ['spades', '6']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.FULL_HOUSE)
     expect(json(hand)).to.equal(jsonCards([
-        ['spades', 'king'], ['hearts', 'king'], ['diamonds', 'king'], ['spades', '10'], ['clubs', '10']
+      ['spades', 'king'], ['hearts', 'king'], ['diamonds', 'king'], ['spades', '10'], ['clubs', '10']
     ]))
   })
 
@@ -114,10 +114,10 @@ describe('BestHand', () => {
       ['clubs', 'ace'], ['clubs', 'king'], ['diamonds', 'king'], ['clubs', '5'], ['spades', '6']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.FOUR_OF_A_KIND)
     expect(json(hand)).to.equal(jsonCards([
-        ['spades', 'king'], ['hearts', 'king'], ['clubs', 'king'], ['diamonds', 'king'], ['clubs', 'ace']
+      ['spades', 'king'], ['hearts', 'king'], ['clubs', 'king'], ['diamonds', 'king'], ['clubs', 'ace']
     ]))
   })
 
@@ -127,7 +127,7 @@ describe('BestHand', () => {
       ['hearts', '2'], ['clubs', 'king'], ['diamonds', 'king'], ['hearts', '5'], ['hearts', '6']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.FLUSH)
     expect(json(hand)).to.equal(jsonCards([
       ['hearts', 'king'], ['hearts', 'queen'], ['hearts', '6'], ['hearts', '5'], ['hearts', '2']
@@ -140,7 +140,7 @@ describe('BestHand', () => {
       ['clubs', '2'], ['clubs', '10'], ['diamonds', 'jack'], ['hearts', '9'], ['spades', '8']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.STRAIGHT)
     expect(json(hand)).to.equal(jsonCards([
       ['hearts', 'king'], ['hearts', 'queen'], ['diamonds', 'jack'], ['clubs', '10'], ['hearts', '9']
@@ -153,7 +153,7 @@ describe('BestHand', () => {
       ['clubs', 'queen'], ['hearts', '10'], ['hearts', 'jack'], ['hearts', '9'], ['hearts', '8']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.STRAIGHT_FLUSH)
     expect(json(hand)).to.equal(jsonCards([
       ['hearts', 'king'], ['hearts', 'queen'], ['hearts', 'jack'], ['hearts', '10'], ['hearts', '9']
@@ -166,7 +166,7 @@ describe('BestHand', () => {
       ['clubs', 'ace'], ['diamonds', '10'], ['diamonds', 'jack'], ['diamonds', 'ace'], ['clubs', 'jack']
     ])
 
-    const { type , hand } = new BestHand(playerCards, communityCards).determine()
+    const { type, hand } = new BestHand(playerCards, communityCards).determine()
     expect(type).to.equal(BestHand.ROYAL_FLUSH)
     expect(json(hand)).to.equal(jsonCards([
       ['diamonds', 'ace'], ['diamonds', 'king'], ['diamonds', 'queen'], ['diamonds', 'jack'], ['diamonds', '10']

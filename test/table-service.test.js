@@ -1,5 +1,5 @@
 import { assert, expect } from 'chai' // CHOICE: use assert or expect
-import { TableService, Player } from '../index.js'
+import { TableService, Player } from '../src/index.js'
 
 // TODO: implement proper unit tests
 describe('TableService', function () {

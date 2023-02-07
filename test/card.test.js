@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Card } from '../index.js'
+import { Card } from '../src/index.js'
 
 describe('Card', function () {
   let card = null

@@ -36,6 +36,6 @@ export default class Handscore {
       [BestHand.PAIR]: ([cardA, cardB]) => toHexValue([cardA, cardB])
     }[type] || toHexValue
 
-    return  parseInt(calcFunction(hand), 16)
+    return parseInt(calcFunction(hand), 16)
   }
 }

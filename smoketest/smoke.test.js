@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { TableService } from '../index.js'
-import { IllegalActionError  } from '../lib/errors.js'
+import { TableService } from '../src/index.js'
+import { IllegalActionError } from '../lib/errors.js'
 
 describe('tableservice smoketest', () => {
   it('should set newly joined players to inactive and distribute 100 cash', () => {

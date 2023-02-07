@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Card, Player, Winners } from '../index.js'
+import { Card, Player, Winners } from '../src/index.js'
 
 describe('Winners', () => {
   const buildCards = (cardTuples) => {
@@ -21,15 +21,15 @@ describe('Winners', () => {
   }
 
   it('returns a list of players with their winning hands', () => {
-      const [player1, cards1] = buildPlayerAndPlayerCards([['spades', '2'], ['diamonds', '10']])
-      const communityCards = buildCards([
-        ['diamonds', 'ace'], ['clubs', 'ace'], ['spades', 'king'], ['hearts', 'king'], ['clubs', 'king']
-      ])
-      const winners = new Winners([player1], [cards1], communityCards).determine()
-      expect(winners).to.deep.equal([{
-        winner: player1,
-        winningHand: communityCards
-      }])
+    const [player1, cards1] = buildPlayerAndPlayerCards([['spades', '2'], ['diamonds', '10']])
+    const communityCards = buildCards([
+      ['diamonds', 'ace'], ['clubs', 'ace'], ['spades', 'king'], ['hearts', 'king'], ['clubs', 'king']
+    ])
+    const winners = new Winners([player1], [cards1], communityCards).determine()
+    expect(winners).to.deep.equal([{
+      winner: player1,
+      winningHand: communityCards
+    }])
   })
 
   it('returns a winner with the winning hand', () => {
