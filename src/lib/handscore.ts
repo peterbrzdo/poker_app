@@ -1,3 +1,4 @@
+import type { Card as ICard } from './types.js'
 import { BestHand, Card } from '../index.js'
 
 export default class Handscore {
@@ -6,11 +7,11 @@ export default class Handscore {
   // The prerequisite is that the cards need to be ordered in a descending order,
   // starting with the highest rank from left to right
 
-  calculate({ type, hand }) {
-    return this.#baseScore(type) + this.#handValue(type, hand)
+  calculate({ type, hand }: { type: string, hand: ICard[] }) {
+    return this.baseScore(type) + this.handValue(type, hand)
   }
 
-  #baseScore(type) {
+  private baseScore(type: string) {
     const hexValue = {
       [BestHand.HIGHEST_CARD]: '100000',
       [BestHand.PAIR]: '200000',
@@ -26,14 +27,14 @@ export default class Handscore {
     return parseInt(hexValue, 16)
   }
 
-  #handValue(type, hand) {
-    const toHexValue = (cards) => cards
+  private handValue(type: string, hand: ICard[]) {
+    const toHexValue = (cards: ICard[]) => cards
       .map((card) => Card.RANKS.indexOf(card.rank).toString(16))
       .join('')
 
     const calcFunction = {
-      [BestHand.HIGHEST_CARD]: ([card]) => toHexValue([card]),
-      [BestHand.PAIR]: ([cardA, cardB]) => toHexValue([cardA, cardB])
+      [BestHand.HIGHEST_CARD]: ([card]: ICard[]) => toHexValue([card]),
+      [BestHand.PAIR]: ([cardA, cardB]: ICard[]) => toHexValue([cardA, cardB])
     }[type] || toHexValue
 
     return parseInt(calcFunction(hand), 16)

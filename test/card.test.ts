@@ -1,13 +1,14 @@
+import type { Card as ICard } from '../src/lib/types.js'
 import { expect } from 'chai'
 import { Card } from '../src/index.js'
 
 describe('Card', function () {
-  let card = null
+  let card: ICard
 
   beforeEach(function () {
     const suit = Card.SUITS[1]
     const rank = Card.RANKS[1]
-    card = new Card({ suit, rank })
+    card = new Card(suit, rank)
   })
 
   describe('constructor()', function () {
@@ -32,19 +33,19 @@ describe('Card', function () {
 
   describe('compareTo()', function () {
     it('should be less compared to another card', function () {
-      const other = new Card({ suit: Card.SUITS[2], rank: Card.RANKS[2] })
+      const other = new Card(Card.SUITS[2], Card.RANKS[2])
       const compared = card.compareTo(other)
       expect(compared).to.be.lessThan(0)
     })
 
     it('should be equal compared to another card', function () {
-      const other = new Card({ suit: Card.SUITS[1], rank: Card.RANKS[1] })
+      const other = new Card(Card.SUITS[1], Card.RANKS[1])
       const compared = card.compareTo(other)
       expect(compared).to.be.equal(0)
     })
 
     it('should be greater compared to another card', function () {
-      const other = new Card({ suit: Card.SUITS[0], rank: Card.RANKS[0] })
+      const other = new Card(Card.SUITS[0], Card.RANKS[0])
       const compared = card.compareTo(other)
       expect(compared).to.be.greaterThan(0)
     })

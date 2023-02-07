@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { Deck, Card } from '../src/index.js'
 
 describe('Deck', function () {
-  let deck = null
+  let deck: Deck
 
   beforeEach(function () {
     deck = new Deck()
@@ -20,7 +20,7 @@ describe('Deck', function () {
       const expectedCards = []
       for (const suit of Card.SUITS) {
         for (const rank of Card.RANKS) {
-          expectedCards.push(new Card({ suit, rank }))
+          expectedCards.push(new Card(suit, rank))
         }
       }
       const { cards } = deck

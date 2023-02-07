@@ -1,17 +1,17 @@
-import State from './state.js'
+import { State, TableService as ITableService, Suit, Rank } from './types.js'
 import Player from './player.js'
 import Card from './card.js'
-import Action from './action.js'
+import { Action } from './action.js'
 import { IllegalActionError, IllegalAmountError } from './errors.js'
 
 export default class TableService {
-  static #instance = null
+  private static instance: ITableService | null = null
 
   static getInstance() {
-    if (!TableService.#instance) {
-      TableService.#instance = new TableService(/* options */)
+    if (!TableService.instance) {
+      TableService.instance = new TableService(/* options */)
     }
-    return TableService.#instance
+    return TableService.instance
   }
 
   constructor(/* options */) {
@@ -28,19 +28,19 @@ export default class TableService {
     // no players yet
     // return []
     return [
-      new Player({ id: 'al-capone', name: 'Al Capone', cash: 95 }),
-      new Player({ id: 'pat-garret', name: 'Pat Garret', cash: 95 }),
-      new Player({ id: 'wyatt-earp', name: 'Wyatt Earp', cash: 95 })
+      new Player('al-capone', 'Al Capone', 95),
+      new Player('pat-garret', 'Pat Garret', 95),
+      new Player('wyatt-earp', 'Wyatt Earp', 95)
     ]
   }
 
-  getPlayerCards(playerId) {
+  getPlayerCards(playerId: string) {
     // TODO: implement
     // no player cards yet
     // return []
     return [
-      new Card({ suit: 'spades', rank: 'ace' }),
-      new Card({ suit: 'hearts', rank: 'ace' })
+      new Card(Suit.Spades, Rank.Ace),
+      new Card(Suit.Hearts, Rank.Ace)
     ]
   }
 
@@ -49,11 +49,11 @@ export default class TableService {
     // no community cards yet
     // return []
     return [
-      new Card({ suit: 'diamonds', rank: 'ace' }),
-      new Card({ suit: 'clubs', rank: 'ace' }),
-      new Card({ suit: 'spades', rank: 'king' }),
-      new Card({ suit: 'hearts', rank: 'king' }),
-      new Card({ suit: 'clubs', rank: 'king' })
+      new Card(Suit.Diamonds, Rank.Ace),
+      new Card(Suit.Clubs, Rank.Ace),
+      new Card(Suit.Spades, Rank.King),
+      new Card(Suit.Hearts, Rank.King),
+      new Card(Suit.Clubs, Rank.King)
     ]
   }
 
@@ -61,7 +61,7 @@ export default class TableService {
     // TODO: implement
     // no current player yet
     // return null
-    return new Player({ id: 'al-capone', name: 'Al Capone', cash: 95 })
+    return new Player('al-capone', 'Al Capone', 100)
   }
 
   get bets() {
@@ -84,7 +84,7 @@ export default class TableService {
     // TODO: implement
     // no winner yet
     // return null
-    return new Player({ id: 'al-capone', name: 'Al Capone', cash: 95 })
+    return new Player('al-capone', 'Al Capone', 95)
   }
 
   get winnerHand() {
@@ -92,11 +92,11 @@ export default class TableService {
     // no winner hand yet
     // return []
     return [
-      new Card({ suit: 'spades', rank: 'ace' }),
-      new Card({ suit: 'hearts', rank: 'ace' }),
-      new Card({ suit: 'diamonds', rank: 'ace' }),
-      new Card({ suit: 'clubs', rank: 'ace' }),
-      new Card({ suit: 'spades', rank: 'king' })
+      new Card(Suit.Spades, Rank.Ace),
+      new Card(Suit.Hearts, Rank.Ace),
+      new Card(Suit.Diamonds, Rank.Ace),
+      new Card(Suit.Clubs, Rank.Ace),
+      new Card(Suit.Spades, Rank.King)
     ]
   }
 
@@ -104,12 +104,12 @@ export default class TableService {
     // TODO: implement
   }
 
-  addPlayer({ id, name }) {
+  addPlayer({ id, name }: { id: string, name: string }) {
     // TODO: implement
     console.log('addPlayer', { id, name })
   }
 
-  performAction(action, ...args) {
+  performAction(action: Action, ...args: any[]) {
     // TODO: implement
     console.log('performAction', { action, args })
   }

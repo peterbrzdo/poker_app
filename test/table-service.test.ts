@@ -3,7 +3,7 @@ import { TableService, Player } from '../src/index.js'
 
 // TODO: implement proper unit tests
 describe('TableService', function () {
-  let tableService = null
+  let tableService: TableService
 
   this.beforeEach(function () {
     tableService = new TableService(/* options */)
@@ -12,9 +12,9 @@ describe('TableService', function () {
   describe('players', function () {
     it('should return a static list of players', function () {
       const expectedPlayers = [
-        new Player({ id: 'al-capone', name: 'Al Capone', cash: 95 }),
-        new Player({ id: 'pat-garret', name: 'Pat Garret', cash: 95 }),
-        new Player({ id: 'wyatt-earp', name: 'Wyatt Earp', cash: 95 })
+        new Player('al-capone', 'Al Capone', 95),
+        new Player('pat-garret', 'Pat Garret', 95),
+        new Player('wyatt-earp', 'Wyatt Earp', 95)
       ]
       const actualPlayers = tableService.players
       for (let i = 0; i < actualPlayers.length; i++) {
