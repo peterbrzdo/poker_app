@@ -42,14 +42,14 @@ export interface Card {
 
 export enum PlayerState {
   Active = 'active',
-  Inactive = 'Inactive'
+  Inactive = 'inactive'
 }
 
 export interface Player {
   id: string
   name: string
   cash: number
-  // state: PlayerState
+  state: PlayerState
   cards: Card[]
 }
 

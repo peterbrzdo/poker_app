@@ -1,8 +1,9 @@
 import { expect } from 'chai'
 import { TableService } from '../src/index.js'
-import { IllegalActionError } from '../lib/errors.js'
+import { Action } from '../src/lib/action.js'
+import { IllegalActionError } from '../src/lib/errors.js'
 
-describe('tableservice smoketest', () => {
+describe('TableService smoketest', () => {
   it('should set newly joined players to inactive and distribute 100 cash', () => {
     const tableService = new TableService()
     tableService.addPlayer({ id: 'al-capone', name: 'Al Capone' })
@@ -29,7 +30,7 @@ describe('tableservice smoketest', () => {
     tableService.addPlayer({ id: 'al-capone', name: 'Al Capone' })
     tableService.addPlayer({ id: 'pat-garret', name: 'Pat Garret' })
     tableService.start()
-    tableService.performAction('fold')
+    tableService.performAction(Action.FOLD)
     expect(tableService.state).to.equal(5)
     expect(tableService.winner.id).to.equal('pat-garret')
     expect(tableService.winnerHand).to.eql([])
@@ -53,10 +54,10 @@ describe('tableservice smoketest', () => {
     expect(tableService.winnerHand).to.eql([])
 
     // First betting round
-    tableService.performAction('check')
+    tableService.performAction(Action.CHECK)
     expect(tableService.currentPlayer.id).to.equal('pat-garret')
 
-    tableService.performAction('check')
+    tableService.performAction(Action.CHECK)
     expect(tableService.currentPlayer.id).to.equal('al-capone')
     expect(tableService.getPlayerCards('al-capone').length).to.equal(2)
     expect(tableService.getPlayerCards('pat-garret').length).to.equal(2)
@@ -68,15 +69,15 @@ describe('tableservice smoketest', () => {
     expect(tableService.winnerHand).to.eql([])
 
     // Second betting round
-    tableService.performAction('raise', 10)
-    tableService.performAction('raise', 20)
+    tableService.performAction(Action.RAISE, 10)
+    tableService.performAction(Action.RAISE, 20)
     expect(tableService.bets).to.eql({
       'al-capone': 10,
       'pat-garret': 20
     })
     expect(tableService.currentPlayer.id).to.equal('al-capone')
-    expect(() => tableService.performAction('check')).to.throw(IllegalActionError)
-    tableService.performAction('call')
+    expect(() => tableService.performAction(Action.CHECK)).to.throw(IllegalActionError)
+    tableService.performAction(Action.CALL)
     expect(tableService.communityCards.length).to.equal(4)
     expect(tableService.state).to.equal(3)
     expect(tableService.pot).to.equal(40)
@@ -85,8 +86,8 @@ describe('tableservice smoketest', () => {
     expect(tableService.winnerHand).to.eql([])
 
     // Third betting round
-    tableService.performAction('raise', 10)
-    tableService.performAction('call')
+    tableService.performAction(Action.RAISE, 10)
+    tableService.performAction(Action.CALL)
     expect(tableService.communityCards.length).to.equal(5)
     expect(tableService.state).to.equal(4)
     expect(tableService.pot).to.equal(60)
@@ -95,8 +96,8 @@ describe('tableservice smoketest', () => {
     expect(tableService.winnerHand).to.eql([])
 
     // Final round
-    tableService.performAction('check')
-    tableService.performAction('check')
+    tableService.performAction(Action.CHECK)
+    tableService.performAction(Action.CHECK)
     expect(tableService.communityCards.length).to.equal(5)
     expect(tableService.state).to.equal(5)
     expect(tableService.pot).to.equal(0)
