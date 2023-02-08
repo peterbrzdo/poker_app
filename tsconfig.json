@@ -11,7 +11,7 @@
       "ES2020"
     ],
      "typeRoots": [
-      "@types",
+      ".www/@types",
       "./node_modules/@types"
     ]
   },
