@@ -5,7 +5,7 @@ const tableService = TableService.getInstance()
 
 const { PORT = 3000 } = process.env
 
-const app = application({ tableService })
+const app = application(tableService)
 
 app
   .listen(PORT, () => console.info(`Server is listening on http://localhost:${PORT}`))

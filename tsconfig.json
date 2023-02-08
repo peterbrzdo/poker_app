@@ -9,11 +9,17 @@
     "sourceMap": true,
     "lib": [
       "ES2020"
+    ],
+     "typeRoots": [
+      "@types",
+      "./node_modules/@types"
     ]
   },
   "include": [
     "src/**/*.ts",
-    "test/**/*.ts"
+    "test/**/*.ts",
+    ".www/!(app)/*.ts",
+    ".www/*.ts"
   ],
   // Most ts-node options can be specified here using their programmatic names.
   "ts-node": {

@@ -9,7 +9,7 @@ import users from '../auth/users.js'
 const secret = '5up3r-s3cr3t-p0k3r-g4m3'
 
 const options = {
-  jwtFromRequest: req => req?.cookies?.jwt,
+  jwtFromRequest: (req: express.Request) => req?.cookies?.jwt,
   secretOrKey: secret
 }
 passport.use(new Strategy(options, ({ user_id }, done) => {

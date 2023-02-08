@@ -1,8 +1,10 @@
+import type { TableService } from '../src/lib/types.js'
+import type { ErrorRequestHandler } from "express"
 import express from 'express'
 import auth from './routes/auth.js'
 import table from './routes/table.js'
 
-export default ({ tableService }) => {
+export default (tableService: TableService) => {
   const app = express()
 
   app.use('/login', express.static('.www/app/login'))
@@ -11,15 +13,16 @@ export default ({ tableService }) => {
 
   app.use('/', express.static('.www/app/table'))
 
-  app.use('/api/v1', table({ tableService }))
+  app.use('/api/v1', table(tableService))
 
-  app.use(({ stack, message, code = 500 }, req, res, next) => {
+  const errorHandler: ErrorRequestHandler = ({ stack, message, code = 500 }, req, res, next) => {
     console.error(stack)
     res
       .status(code)
       .set('Content-Type', 'text/plain')
       .send(message)
-  })
+  }
+  app.use(errorHandler)
 
   return app
 }
