@@ -15,8 +15,8 @@
     "start:dev": "ts-node .www/server.ts",
     "watch": "nodemon --watch lib .www/server.js",
     "lint": "eslint src test",
-    "test": "mocha \"test/**/*.ts\" ",
-    "test:smoketest": "mocha \"smoketest/*.ts\" ",
+    "test": "mocha test/**/*.ts",
+    "test:smoketest": "mocha smoketest/*.ts",
     "test:coverage": "c8 --check-coverage --lines 95 --functions 95 --branches 95 npm test"
   },
   "author": "Team Platinum",
