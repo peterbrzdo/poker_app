@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { TableService } from '../src/index.js'
-import { Action } from '../src/lib/action.js'
+import { Action } from '../src/lib/types.js'
 import { IllegalActionError } from '../src/lib/errors.js'
 
 describe('TableService smoketest', () => {

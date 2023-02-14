@@ -1,4 +1,9 @@
-import { Action } from './action.js'
+export enum Action {
+  RAISE = 'raise',
+  CALL = 'call',
+  CHECK = 'check',
+  FOLD = 'fold'
+}
 
 export enum State {
   OPEN = 0,
@@ -38,6 +43,7 @@ export interface Card {
   suit: Suit
   rank: Rank
   compareTo: (card: Card) => number
+  toJSON: () => { rank: Rank, suit: Suit }
 }
 
 export enum PlayerState {
@@ -51,16 +57,19 @@ export interface Player {
   cash: number
   state: PlayerState
   cards: Card[]
+  addCard: (card: Card) => void
+  addCash: (amount: number) => void
+  deductCash: (amount: number) => void
 }
 
 export interface TableService {
   state: State
   players: Player[]
   communityCards: Card[]
-  currentPlayer: Player
+  currentPlayer: Player | null
   bets: { [key: string]: number }
   pot: number
-  winner: Player
+  winner: Player | null
   winnerHand: Card[]
   start: () => void
   addPlayer: ({ id, name }: { id: string, name: string }) => void

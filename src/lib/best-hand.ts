@@ -1,9 +1,4 @@
-import type { Card, CardPropertyType, Suit, Rank } from './types.js'
-
-export type BestHandType = {
-  type: string
-  hand: Card[]
-}
+import type { Card, CardPropertyType, Suit, Rank, BestHandType } from './types.js'
 
 export default class BestHand {
   static HIGHEST_CARD = 'HIGHEST_CARD'

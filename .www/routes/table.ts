@@ -1,7 +1,7 @@
 import express from 'express'
 import type { Player, Card, TableService } from '../../src/lib/types.js'
 
-const playerToObject = (player: Player) => {
+const playerToObject = (player: Player | null) => {
   if (!player) {
     return null
   }

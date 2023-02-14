@@ -4,7 +4,7 @@ This is the starting point of the application.
 
 ## Getting started
 
-Please run `npm install` and `npm start` to start the application.
+Please run `npm ci` and `npm start` to start the application.
 
 You can then browse to <http://localhost:3000/>
 
@@ -16,27 +16,19 @@ You can then browse to <http://localhost:3000/>
 
 - `lib` folder contains the code for the poker game
 
-  - `lib/action.js` contains constants for game actions.
+  - `lib/card.ts` contains the code for the `Card` class
 
       Can be used as it is.
 
-  - `lib/card.js` contains the code for the `Card` class
+  - `lib/deck.ts` contains the code for the `Deck` class
 
       Can be used as it is.
 
-  - `lib/deck.js` contains the code for the `Deck` class
+  - `lib/player.ts` contains the code for the `Player` class
 
       Can be used as it is.
 
-  - `lib/player.js` contains the code for the `Player` class
-
-      Can be used as it is.
-
-  - `lib/state.js` contains game state contants
-
-      Can be used as it is.
-
-  - `lib/table-service.js` contains the code for the `TableService` class
+  - `lib/table-service.ts` contains the code for the `TableService` class
 
       This is the starting point for your code.
 
@@ -45,12 +37,18 @@ You can then browse to <http://localhost:3000/>
       Look for any `// TODO: implement` comment.
 
       Also make sure to return the correct values and types for each method.
-      
+
 ## Scripts
 
-- `npm start`: starts the application server
+- `npm start`: builds the application and starts the application server
+
+- `npm run start:dev`: starts the application server without pre-transpilation step
 
 - `npm test`: runs the tests
+
+- `npm run test:smoketest`: runs the smoke tests in `./smoketest/smoke.test.ts`
+
+- `npm run test:coverage`: runs the tests including a coverage report
 
 - `npm run lint`: runs static code checks
 
