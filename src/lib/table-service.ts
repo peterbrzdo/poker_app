@@ -113,5 +113,3 @@ export default class TableService {
     console.log('performAction', { action, args })
   }
 }
-
-
