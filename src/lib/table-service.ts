@@ -3,7 +3,7 @@ import Player from './player.js'
 import Card from './card.js'
 import { IllegalActionError, IllegalAmountError } from './errors.js'
 
-export default class TableService {
+export default class TableService implements ITableService {
   private static instance: ITableService | null = null
 
   static getInstance() {
