@@ -32,7 +32,7 @@ describe('TableService smoketest', () => {
     tableService.start()
     tableService.performAction(Action.FOLD)
     expect(tableService.state).to.equal(5)
-    expect(tableService.winner.id).to.equal('pat-garret')
+    expect(tableService.winner?.id).to.equal('pat-garret')
     expect(tableService.winnerHand).to.eql([])
   })
 
