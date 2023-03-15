@@ -32,7 +32,7 @@ describe('TableService smoketest', () => {
     tableService.start()
     tableService.performAction(Action.FOLD)
     expect(tableService.state).to.equal(5)
-    expect(tableService.winner.id).to.equal('pat-garret')
+    expect(tableService.winner?.id).to.equal('pat-garret')
     expect(tableService.winnerHand).to.eql([])
   })
 
@@ -46,7 +46,7 @@ describe('TableService smoketest', () => {
 
     tableService.addPlayer({ id: 'pat-garret', name: 'Pat Garret' })
     tableService.start()
-    expect(tableService.currentPlayer.id).to.equal('al-capone')
+    expect(tableService.currentPlayer?.id).to.equal('al-capone')
     expect(tableService.state).to.equal(1)
     expect(tableService.pot).to.equal(0)
     expect(tableService.bets).to.eql({})
@@ -55,10 +55,10 @@ describe('TableService smoketest', () => {
 
     // First betting round
     tableService.performAction(Action.CHECK)
-    expect(tableService.currentPlayer.id).to.equal('pat-garret')
+    expect(tableService.currentPlayer?.id).to.equal('pat-garret')
 
     tableService.performAction(Action.CHECK)
-    expect(tableService.currentPlayer.id).to.equal('al-capone')
+    expect(tableService.currentPlayer?.id).to.equal('al-capone')
     expect(tableService.getPlayerCards('al-capone').length).to.equal(2)
     expect(tableService.getPlayerCards('pat-garret').length).to.equal(2)
     expect(tableService.communityCards.length).to.equal(3)
@@ -75,7 +75,7 @@ describe('TableService smoketest', () => {
       'al-capone': 10,
       'pat-garret': 20
     })
-    expect(tableService.currentPlayer.id).to.equal('al-capone')
+    expect(tableService.currentPlayer?.id).to.equal('al-capone')
     expect(() => tableService.performAction(Action.CHECK)).to.throw(IllegalActionError)
     tableService.performAction(Action.CALL)
     expect(tableService.communityCards.length).to.equal(4)
