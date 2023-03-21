@@ -1,4 +1,4 @@
-import { State, TableService as ITableService, Suit, Rank, Action } from './types.js'
+import { State, ITableService, Suit, Rank, Action } from './types.js'
 import Player from './player.js'
 import Card from './card.js'
 import { IllegalActionError, IllegalAmountError } from './errors.js'

@@ -1,4 +1,4 @@
-import type { Card as ICard } from './types.js'
+import type { ICard} from './types.js'
 import { BestHand, Card } from '../index.js'
 
 export default class Handscore {

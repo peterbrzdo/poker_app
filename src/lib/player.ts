@@ -1,11 +1,11 @@
-import { Card, Player as IPlayer, PlayerState } from './types.js'
+import { ICard, IPlayer, PlayerState } from './types.js'
 
 export default class Player implements IPlayer {
   private _id = ''
   private _name = ''
   private _cash = 0
   private _state: PlayerState
-  private _cards: Card[] = []
+  private _cards: ICard[] = []
 
   constructor(id: string, name: string, cash: number) {
     this._id = id
@@ -34,7 +34,7 @@ export default class Player implements IPlayer {
     return this._cards
   }
 
-  addCard(card: Card) {
+  addCard(card: ICard) {
     this._cards = [...this._cards, card]
   }
 

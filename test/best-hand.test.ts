@@ -1,4 +1,4 @@
-import type { Card as ICard } from '../src/lib/types.js'
+import type { ICard } from '../src/lib/types.js'
 import { Suit, Rank } from '../src/lib/types.js'
 import { expect } from 'chai'
 import { Card, BestHand } from '../src/index.js'

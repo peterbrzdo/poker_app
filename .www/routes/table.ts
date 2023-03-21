@@ -1,16 +1,16 @@
 import express from 'express'
-import type { Player, Card, TableService } from '../../src/lib/types.js'
+import type { IPlayer, ICard, ITableService } from '../../src/lib/types.js'
 
-const playerToObject = (player: Player | null) => {
+const playerToObject = (player: IPlayer | null) => {
   if (!player) {
     return null
   }
   const { id, name, cash } = player
   return { id, name, cash }
 }
-const cardToObject = ({ suit, rank }: Card) => ({ suit, rank })
+const cardToObject = ({ suit, rank }: ICard) => ({ suit, rank })
 
-export default (tableService: TableService) => {
+export default (tableService: ITableService) => {
   const router = express.Router()
 
   // get game details
