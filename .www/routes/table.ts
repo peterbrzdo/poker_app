@@ -23,7 +23,7 @@ export default (tableService: TableService) => {
       currentPlayer: playerToObject(currentPlayer),
       communityCards: communityCards.map(cardToObject),
       playerCards: playerCards.map(cardToObject),
-      bets,
+      bets: Array.from(bets),
       pot,
       winner: playerToObject(winner),
       winnerHand: winnerHand.map(cardToObject)

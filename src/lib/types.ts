@@ -67,7 +67,7 @@ export interface TableService {
   players: Player[]
   communityCards: Card[]
   currentPlayer: Player | null
-  bets: { [key: string]: number }
+  bets: Map<string, number>
   pot: number
   winner: Player | null
   winnerHand: Card[]

@@ -66,12 +66,12 @@ export default class TableService implements ITableService {
   get bets() {
     // TODO: implement
     // no bets yet
-    // return null
-    return {
-      'al-capone': 5,
-      'pat-garret': 5,
-      'wyatt-earp': 5
-    }
+    // return new Map()
+    return new Map([
+      ['al-capone', 10],
+      ['pat-garret', 20],
+      ['wyatt-earp', 5]
+    ])
   }
 
   get pot() {
