@@ -73,7 +73,7 @@ export interface TableService {
   winnerHand: Card[]
   start: () => void
   addPlayer: ({ id, name }: { id: string, name: string }) => void
-  performAction: (action: Action, ...args: any[]) => void
+  performAction: (action: Action, ...args: unknown[]) => void
   getPlayerCards: (playerId: string) => Card[]
 }
 

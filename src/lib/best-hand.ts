@@ -12,28 +12,32 @@ export default class BestHand {
   static STRAIGHT_FLUSH = 'STRAIGHT_FLUSH'
   static ROYAL_FLUSH = 'ROYAL_FLUSH'
   private cards: Card[]
-  private cardsByRanks: Map<Rank, Card[]> | null = null
-  private cardsBySuits: Map<Suit, Card[]> | null = null
+  private cardsByRanks: Map<Rank, Card[]>
+  private cardsBySuits: Map<Suit, Card[]>
 
   constructor(playerCards: Card[], communityCards: Card[]) {
     this.cards = [...playerCards, ...communityCards].sort((card1, card2) => {
       return card2.compareTo(card1)
     })
-    this.groupCardsByRanks()
-    this.groupCardsBySuits()
+    this.cardsByRanks = this.groupCardsByRanks()
+    this.cardsBySuits = this.groupCardsBySuits()
   }
 
   determine() {
-    return this.royalFlush()
-      || this.straightFlush()
-      || this.fourOfAKind()
-      || this.fullHouse()
-      || this.flush()
-      || this.straight()
-      || this.threeOfAKind()
-      || this.twoPairs()
-      || this.pair()
-      || this.highestCard()
+    const possibleHands = [
+      this.royalFlush(),
+      this.straightFlush(),
+      this.fourOfAKind(),
+      this.fullHouse(),
+      this.flush(),
+      this.straight(),
+      this.threeOfAKind(),
+      this.twoPairs(),
+      this.pair(),
+    ]
+
+    const hand = possibleHands.find((hand) => hand !== null)
+    return hand || this.highestCard()
   }
 
   private royalFlush(): BestHandType | null {
@@ -139,13 +143,13 @@ export default class BestHand {
   }
 
   private xOfAKind(amount: number) {
-    return [...this.cardsByRanks!.entries()].filter(([, cards]) => {
+    return [...this.cardsByRanks.entries()].filter(([, cards]) => {
       return cards.length == amount
     })
   }
 
   private atLeastXOfASuit(amount: number) {
-    return [...this.cardsBySuits!.entries()].filter(([, cards]) => {
+    return [...this.cardsBySuits.entries()].filter(([, cards]) => {
       return cards.length >= amount
     })
   }
@@ -158,11 +162,11 @@ export default class BestHand {
   }
 
   private groupCardsBySuits() {
-    this.cardsBySuits = this.groupCardsByType('suit')
+    return this.groupCardsByType('suit')
   }
 
   private groupCardsByRanks() {
-    this.cardsByRanks = this.groupCardsByType('rank')
+    return this.groupCardsByType('rank')
   }
 
   private groupCardsByType(type: CardPropertyType) {

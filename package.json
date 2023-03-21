@@ -87,6 +87,10 @@
       "quotes": [
         "error",
         "single"
+      ],
+      "complexity": [
+        "error",
+        5
       ]
     },
     "ignorePatterns": [
