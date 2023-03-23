@@ -1,19 +1,19 @@
 import type { BestHandType } from './types.js'
 import { BestHand, Handscore } from '../index.js'
-import { Card, Player } from './types.js'
+import { ICard, IPlayer } from './types.js'
 
 type SortedPlayersWithScores = {
-  player: Player,
+  player: IPlayer,
   bestHand: BestHandType,
   score: number
 }[]
 
 export default class Winners {
-  private players: Player[] = []
-  private playerCards: Card[][] = []
-  private communityCards: Card[] = []
+  private players: IPlayer[] = []
+  private playerCards: ICard[][] = []
+  private communityCards: ICard[] = []
 
-  constructor(players: Player[], playerCards: Card[][], communityCards: Card[]) {
+  constructor(players: IPlayer[], playerCards: ICard[][], communityCards: ICard[]) {
     this.players = players
     this.playerCards = playerCards
     this.communityCards = communityCards

@@ -1,4 +1,4 @@
-import { Card as ICard, Suit, Rank } from './types.js'
+import { ICard, Suit, Rank } from './types.js'
 
 export default class Card implements ICard {
   static SUITS = [Suit.Spades, Suit.Hearts, Suit.Diamonds, Suit.Clubs]

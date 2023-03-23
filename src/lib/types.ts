@@ -39,10 +39,10 @@ export enum Rank {
 
 export type CardPropertyType = 'suit' | 'rank'
 
-export interface Card {
+export interface ICard {
   suit: Suit
   rank: Rank
-  compareTo: (card: Card) => number
+  compareTo: (card: ICard) => number
   toJSON: () => { rank: Rank, suit: Suit }
 }
 
@@ -51,33 +51,33 @@ export enum PlayerState {
   Inactive = 'inactive'
 }
 
-export interface Player {
+export interface IPlayer {
   id: string
   name: string
   cash: number
   state: PlayerState
-  cards: Card[]
-  addCard: (card: Card) => void
+  cards: ICard[]
+  addCard: (card: ICard) => void
   addCash: (amount: number) => void
   deductCash: (amount: number) => void
 }
 
-export interface TableService {
+export interface ITableService {
   state: State
-  players: Player[]
-  communityCards: Card[]
-  currentPlayer: Player | null
-  bets: { [key: string]: number }
+  players: IPlayer[]
+  communityCards: ICard[]
+  currentPlayer: IPlayer | null
+  bets: Map<string, number>
   pot: number
-  winner: Player | null
-  winnerHand: Card[]
+  winner: IPlayer | null
+  winnerHand: ICard[]
   start: () => void
   addPlayer: ({ id, name }: { id: string, name: string }) => void
   performAction: (action: Action, ...args: unknown[]) => void
-  getPlayerCards: (playerId: string) => Card[]
+  getPlayerCards: (playerId: string) => ICard[]
 }
 
 export type BestHandType = {
   type: string
-  hand: Card[]
+  hand: ICard[]
 }

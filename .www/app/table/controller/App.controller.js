@@ -47,7 +47,7 @@ sap.ui.define([
           player,
           currentPlayer,
           players,
-          bets: bets ? Object.entries(bets).map(([id, bet]) => {
+          bets: bets ? bets.map(([id, bet]) => {
             const name = players.find(p => p.id === id)?.name
             return { name, bet }
           }) : [],

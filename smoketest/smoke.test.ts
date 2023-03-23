@@ -4,6 +4,7 @@ import { Action } from '../src/lib/types.js'
 import { IllegalActionError } from '../src/lib/errors.js'
 
 describe('TableService smoketest', () => {
+
   it('should set newly joined players to inactive and distribute 100 cash', () => {
     const tableService = new TableService()
     tableService.addPlayer({ id: 'al-capone', name: 'Al Capone' })
@@ -49,7 +50,7 @@ describe('TableService smoketest', () => {
     expect(tableService.currentPlayer?.id).to.equal('al-capone')
     expect(tableService.state).to.equal(1)
     expect(tableService.pot).to.equal(0)
-    expect(tableService.bets).to.eql({})
+    expect(tableService.bets).to.be.empty
     expect(tableService.winner).to.eql(null)
     expect(tableService.winnerHand).to.eql([])
 
@@ -64,24 +65,24 @@ describe('TableService smoketest', () => {
     expect(tableService.communityCards.length).to.equal(3)
     expect(tableService.state).to.equal(2)
     expect(tableService.pot).to.equal(0)
-    expect(tableService.bets).to.eql({})
+    expect(tableService.bets).to.be.empty
     expect(tableService.winner).to.eql(null)
     expect(tableService.winnerHand).to.eql([])
 
     // Second betting round
     tableService.performAction(Action.RAISE, 10)
     tableService.performAction(Action.RAISE, 20)
-    expect(tableService.bets).to.eql({
-      'al-capone': 10,
-      'pat-garret': 20
-    })
+    expect(tableService.bets).to.eql(new Map([
+      ['al-capone', 10],
+      ['pat-garret', 20]])
+    )
     expect(tableService.currentPlayer?.id).to.equal('al-capone')
     expect(() => tableService.performAction(Action.CHECK)).to.throw(IllegalActionError)
     tableService.performAction(Action.CALL)
     expect(tableService.communityCards.length).to.equal(4)
     expect(tableService.state).to.equal(3)
     expect(tableService.pot).to.equal(40)
-    expect(tableService.bets).to.eql({})
+    expect(tableService.bets).to.be.empty
     expect(tableService.winner).to.eql(null)
     expect(tableService.winnerHand).to.eql([])
 
@@ -91,7 +92,7 @@ describe('TableService smoketest', () => {
     expect(tableService.communityCards.length).to.equal(5)
     expect(tableService.state).to.equal(4)
     expect(tableService.pot).to.equal(60)
-    expect(tableService.bets).to.eql({})
+    expect(tableService.bets).to.be.empty
     expect(tableService.winner).to.eql(null)
     expect(tableService.winnerHand).to.eql([])
 
