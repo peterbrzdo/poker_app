@@ -13,7 +13,6 @@
     "prestart": "npm run build",
     "start": "node dist/.www/server.js",
     "start:dev": "ts-node .www/server.ts",
-    "watch": "nodemon --watch lib .www/server.js",
     "lint": "eslint src test",
     "test": "mocha test/**/*.ts",
     "test:smoketest": "mocha smoketest/*.ts",
@@ -44,7 +43,6 @@
     "cookie-parser": "^1.4.6",
     "express": "^4.17.3",
     "jsonwebtoken": "^9.0.0",
-    "nodemon": "^2.0.15",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0"
   },
