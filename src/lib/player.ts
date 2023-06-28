@@ -30,6 +30,10 @@ export default class Player implements IPlayer {
     return this._state
   }
 
+  set state(state) {
+    this._state = state
+  }
+
   get cards() {
     return this._cards
   }
