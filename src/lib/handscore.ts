@@ -1,5 +1,5 @@
-import type { ICard} from './types.js'
-import { BestHand, Card } from '../index.js'
+import type { ICard } from './types'
+import { BestHand, Card } from '../index'
 
 export default class Handscore {
   // The hand score is calculated by adding the value of the type and the value of the hand.

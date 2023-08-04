@@ -1,5 +1,5 @@
-import type { ICard } from './types.js'
-import Card from './card.js'
+import type { ICard } from './types'
+import Card from './card'
 
 export default class Deck {
   private _cards: ICard[] = []

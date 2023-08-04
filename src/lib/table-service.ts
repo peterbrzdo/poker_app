@@ -1,7 +1,7 @@
-import { State, ITableService, Suit, Rank, Action } from './types.js'
-import Player from './player.js'
-import Card from './card.js'
-import { IllegalActionError, IllegalAmountError } from './errors.js'
+import { State, ITableService, Suit, Rank, Action } from './types'
+import Player from './player'
+import Card from './card'
+import { IllegalActionError, IllegalAmountError } from './errors'
 
 export default class TableService implements ITableService {
   private static instance: ITableService | null = null

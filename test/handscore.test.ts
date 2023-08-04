@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { BestHand, Card, Handscore } from '../src/index.js'
-import { Suit, Rank } from '../src/lib/types.js'
+import { BestHand, Card, Handscore } from '../src/index'
+import { Suit, Rank } from '../src/lib/types'
 
 describe('Handscore', () => {
   const hex = (number: string) => {

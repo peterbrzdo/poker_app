@@ -1,7 +1,7 @@
-import type { ICard } from '../src/lib/types.js'
+import type { ICard } from '../src/lib/types'
 import { expect } from 'chai'
-import { Card, Player, Winners } from '../src/index.js'
-import { Suit, Rank } from '../src/lib/types.js'
+import { Card, Player, Winners } from '../src/index'
+import { Suit, Rank } from '../src/lib/types'
 
 describe('Winners', () => {
   const buildCards = (cardTuples: [Suit, Rank][]) => {

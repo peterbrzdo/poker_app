@@ -1,4 +1,4 @@
-import type { ICard, CardPropertyType, Suit, Rank, BestHandType } from './types.js'
+import type { ICard, CardPropertyType, Suit, Rank, BestHandType } from './types'
 
 export default class BestHand {
   static HIGHEST_CARD = 'HIGHEST_CARD'

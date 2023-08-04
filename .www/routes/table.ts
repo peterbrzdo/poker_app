@@ -1,5 +1,5 @@
 import express from 'express'
-import type { IPlayer, ICard, ITableService } from '../../src/lib/types.js'
+import type { IPlayer, ICard, ITableService } from '../../src/lib/types'
 
 const playerToObject = (player: IPlayer | null) => {
   if (!player) {

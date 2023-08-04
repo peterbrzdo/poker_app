@@ -1,8 +1,8 @@
-import type { ITableService } from '../src/lib/types.js'
+import type { ITableService } from '../src/lib/types'
 import type { ErrorRequestHandler } from "express"
 import express from 'express'
-import auth from './routes/auth.js'
-import table from './routes/table.js'
+import auth from './routes/auth'
+import table from './routes/table'
 
 export default (tableService: ITableService) => {
   const app = express()

@@ -1,4 +1,4 @@
-import { ICard, IPlayer, PlayerState } from './types.js'
+import { ICard, IPlayer, PlayerState } from './types'
 
 export default class Player implements IPlayer {
   private _id = ''

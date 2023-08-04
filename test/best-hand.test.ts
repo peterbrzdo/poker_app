@@ -1,7 +1,7 @@
-import type { ICard } from '../src/lib/types.js'
-import { Suit, Rank } from '../src/lib/types.js'
+import type { ICard } from '../src/lib/types'
+import { Suit, Rank } from '../src/lib/types'
 import { expect } from 'chai'
-import { Card, BestHand } from '../src/index.js'
+import { Card, BestHand } from '../src/index'
 
 describe('BestHand', () => {
   const buildCards = (cardTuples: [Suit, Rank][]) => {

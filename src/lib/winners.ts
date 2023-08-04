@@ -1,6 +1,6 @@
-import type { BestHandType } from './types.js'
-import { BestHand, Handscore } from '../index.js'
-import { ICard, IPlayer } from './types.js'
+import type { BestHandType } from './types'
+import { BestHand, Handscore } from '../index'
+import { ICard, IPlayer } from './types'
 
 type SortedPlayersWithScores = {
   player: IPlayer,

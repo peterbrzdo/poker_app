@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser'
 import { Strategy } from 'passport-jwt'
 import jwt from 'jsonwebtoken'
 
-import users from '../auth/users.js'
+import users from '../auth/users'
 
 const secret = '5up3r-s3cr3t-p0k3r-g4m3'
 

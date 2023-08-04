@@ -1,7 +1,7 @@
 import { expect } from 'chai'
-import { TableService } from '../src/index.js'
-import { Action } from '../src/lib/types.js'
-import { IllegalActionError } from '../src/lib/errors.js'
+import { TableService } from '../src/index'
+import { Action } from '../src/lib/types'
+import { IllegalActionError } from '../src/lib/errors'
 
 //██╗  ██╗ █████╗ ███╗   ██╗██████╗ ███████╗     ██████╗ ███████╗███████╗██╗██╗██╗
 //██║  ██║██╔══██╗████╗  ██║██╔══██╗██╔════╝    ██╔═══██╗██╔════╝██╔════╝██║██║██║
@@ -9,7 +9,7 @@ import { IllegalActionError } from '../src/lib/errors.js'
 //██╔══██║██╔══██║██║╚██╗██║██║  ██║╚════██║    ██║   ██║██╔══╝  ██╔══╝  ╚═╝╚═╝╚═╝
 //██║  ██║██║  ██║██║ ╚████║██████╔╝███████║    ╚██████╔╝██║     ██║     ██╗██╗██╗
 //╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝     ╚═════╝ ╚═╝     ╚═╝     ╚═╝╚═╝╚═╝
-   
+
 describe('TableService smoketest', () => {
 
   it('should set newly joined players to inactive and distribute 100 cash', () => {

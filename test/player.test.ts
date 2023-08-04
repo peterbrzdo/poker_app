@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { Player } from '../src/index.js'
-import { PlayerState } from '../src/lib/types.js'
+import { Player } from '../src/index'
+import { PlayerState } from '../src/lib/types'
 
 describe('Player', () => {
   describe('constructor()', () => {

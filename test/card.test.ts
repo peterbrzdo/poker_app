@@ -1,6 +1,6 @@
-import type { ICard } from '../src/lib/types.js'
+import type { ICard } from '../src/lib/types'
 import { expect } from 'chai'
-import { Card } from '../src/index.js'
+import { Card } from '../src/index'
 
 describe('Card', function () {
   let card: ICard
