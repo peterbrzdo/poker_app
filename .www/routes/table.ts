@@ -1,5 +1,6 @@
 import express from 'express'
 import type { IPlayer, ICard, ITableService } from '../../src/lib/types'
+import { Action } from '../../src/lib/types'
 
 const playerToObject = (player: IPlayer | null) => {
   if (!player) {
@@ -51,11 +52,18 @@ export default (tableService: ITableService) => {
   })
 
   // actions
-  router.post('/actions', express.json(), ({ body: { type: action, args = [] } }, res, next) => {
-    tableService.performAction(action, ...args)
-    res
-      .status(204)
-      .end()
+  router.post('/actions', express.json(), (req, res, next) => {
+    const result = Action.safeParse(req.body)
+    if (result.success) {
+      tableService.performAction(result.data)
+      res
+        .status(204)
+        .end()
+    } else {
+      res.status(400).json({
+        error: 'Invalid action definition'
+      })
+    }
   })
 
   return router

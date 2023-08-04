@@ -35,16 +35,13 @@ sap.ui.define([], () => {
       })
     },
 
-    async action(type, ...args) {
+    async action(action) {
       await _fetch(`${API_PATH}/actions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          type,
-          args
-        })
+        body: JSON.stringify(action)
       })
     }
   }

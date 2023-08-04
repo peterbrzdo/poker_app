@@ -106,12 +106,12 @@
         </content>
         <footer>
           <OverflowToolbar>
-            <Button id="raise" text="{i18n>Raise}" enabled="{/actions/enabled}" press=".action('raise', ${path: '/amount', formatter: 'parseInt'})" type="Attention" />
+            <Button id="raise" text="{i18n>Raise}" enabled="{/actions/enabled}" press=".action('RAISE', ${path: '/amount', formatter: 'parseInt'})" type="Attention" />
             <Input id="amount" enabled="{/actions/enabled}" width="5em" placeholder="{i18n>Amount}" value="{/amount}" />
             <ToolbarSpacer />
-            <Button id="check" enabled="{/actions/enabled}" text="{i18n>Check}" press=".action('check')" type="Ghost" />
-            <Button id="call" enabled="{/actions/enabled}" text="{i18n>Call}" press=".action('call')" type="Emphasized" />
-            <Button id="fold" enabled="{/actions/enabled}" text="{i18n>Fold}" press=".action('fold')" type="Reject" />
+            <Button id="check" enabled="{/actions/enabled}" text="{i18n>Check}" press=".action('CHECK')" type="Ghost" />
+            <Button id="call" enabled="{/actions/enabled}" text="{i18n>Call}" press=".action('CALL')" type="Emphasized" />
+            <Button id="fold" enabled="{/actions/enabled}" text="{i18n>Fold}" press=".action('FOLD')" type="Reject" />
           </OverflowToolbar>
         </footer>
       </Page>

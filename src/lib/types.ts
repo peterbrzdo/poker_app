@@ -1,9 +1,20 @@
-export enum Action {
-  RAISE = 'raise',
-  CALL = 'call',
-  CHECK = 'check',
-  FOLD = 'fold'
+import { z } from 'zod'
+
+export enum ActionType {
+  CHECK = 'CHECK',
+  CALL = 'CALL',
+  RAISE = 'RAISE',
+  FOLD = 'FOLD',
 }
+
+export const Action = z.union([
+  z.object({ type: z.literal(ActionType.CHECK) }),
+  z.object({ type: z.literal(ActionType.CALL) }),
+  z.object({ type: z.literal(ActionType.FOLD) }),
+  z.object({ type: z.literal(ActionType.RAISE), amount: z.number().gt(0) })
+])
+
+export type Action = z.infer<typeof Action>
 
 export enum State {
   OPEN = 0,
@@ -52,28 +63,28 @@ export enum PlayerState {
 }
 
 export interface IPlayer {
-  id: string
-  name: string
-  cash: number
-  state: PlayerState
-  cards: ICard[]
+  readonly id: string
+  readonly name: string
+  readonly cash: number
+  readonly state: PlayerState
+  readonly cards: ICard[]
   addCard: (card: ICard) => void
   addCash: (amount: number) => void
   deductCash: (amount: number) => void
 }
 
 export interface ITableService {
-  state: State
-  players: IPlayer[]
-  communityCards: ICard[]
-  currentPlayer: IPlayer | null
-  bets: Map<string, number>
-  pot: number
-  winner: IPlayer | null
-  winnerHand: ICard[]
+  readonly state: State
+  readonly players: IPlayer[]
+  readonly communityCards: ICard[]
+  readonly currentPlayer: IPlayer | null
+  readonly bets: Map<string, number>
+  readonly pot: number
+  readonly winner: IPlayer | null
+  readonly winnerHand: ICard[]
   start: () => void
   addPlayer: ({ id, name }: { id: string, name: string }) => void
-  performAction: (action: Action, ...args: unknown[]) => void
+  performAction: (action: Action) => void
   getPlayerCards: (playerId: string) => ICard[]
 }
 

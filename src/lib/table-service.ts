@@ -108,8 +108,8 @@ export default class TableService implements ITableService {
     console.log('addPlayer', { id, name })
   }
 
-  performAction(action: Action, ...args: unknown[]) {
+  performAction(action: Action) {
     // TODO: implement
-    console.log('performAction', { action, args })
+    console.log('performAction', action)
   }
 }

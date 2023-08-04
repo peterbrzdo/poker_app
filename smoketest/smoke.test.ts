@@ -1,6 +1,6 @@
+import { ActionType } from '../src/lib/types'
 import { expect } from 'chai'
 import { TableService } from '../src/index'
-import { Action } from '../src/lib/types'
 import { IllegalActionError } from '../src/lib/errors'
 
 //██╗  ██╗ █████╗ ███╗   ██╗██████╗ ███████╗     ██████╗ ███████╗███████╗██╗██╗██╗
@@ -38,7 +38,7 @@ describe('TableService smoketest', () => {
     tableService.addPlayer({ id: 'al-capone', name: 'Al Capone' })
     tableService.addPlayer({ id: 'pat-garret', name: 'Pat Garret' })
     tableService.start()
-    tableService.performAction(Action.FOLD)
+    tableService.performAction({ type: ActionType.FOLD })
     expect(tableService.state).to.equal(5)
     expect(tableService.winner?.id).to.equal('pat-garret')
     expect(tableService.winnerHand).to.eql([])
@@ -62,10 +62,10 @@ describe('TableService smoketest', () => {
     expect(tableService.winnerHand).to.eql([])
 
     // First betting round
-    tableService.performAction(Action.CHECK)
+    tableService.performAction({ type: ActionType.CHECK })
     expect(tableService.currentPlayer?.id).to.equal('pat-garret')
 
-    tableService.performAction(Action.CHECK)
+    tableService.performAction({ type: ActionType.CHECK })
     expect(tableService.currentPlayer?.id).to.equal('al-capone')
     expect(tableService.getPlayerCards('al-capone').length).to.equal(2)
     expect(tableService.getPlayerCards('pat-garret').length).to.equal(2)
@@ -77,15 +77,15 @@ describe('TableService smoketest', () => {
     expect(tableService.winnerHand).to.eql([])
 
     // Second betting round
-    tableService.performAction(Action.RAISE, 10)
-    tableService.performAction(Action.RAISE, 20)
+    tableService.performAction({ type: ActionType.RAISE, amount: 10 })
+    tableService.performAction({ type: ActionType.RAISE, amount: 20 })
     expect(tableService.bets).to.eql(new Map([
       ['al-capone', 10],
       ['pat-garret', 20]])
     )
     expect(tableService.currentPlayer?.id).to.equal('al-capone')
-    expect(() => tableService.performAction(Action.CHECK)).to.throw(IllegalActionError)
-    tableService.performAction(Action.CALL)
+    expect(() => tableService.performAction({ type: ActionType.CHECK })).to.throw(IllegalActionError)
+    tableService.performAction({ type: ActionType.CALL })
     expect(tableService.communityCards.length).to.equal(4)
     expect(tableService.state).to.equal(3)
     expect(tableService.pot).to.equal(40)
@@ -94,8 +94,8 @@ describe('TableService smoketest', () => {
     expect(tableService.winnerHand).to.eql([])
 
     // Third betting round
-    tableService.performAction(Action.RAISE, 10)
-    tableService.performAction(Action.CALL)
+    tableService.performAction({ type: ActionType.RAISE, amount: 10 })
+    tableService.performAction({ type: ActionType.CALL })
     expect(tableService.communityCards.length).to.equal(5)
     expect(tableService.state).to.equal(4)
     expect(tableService.pot).to.equal(60)
@@ -104,8 +104,8 @@ describe('TableService smoketest', () => {
     expect(tableService.winnerHand).to.eql([])
 
     // Final round
-    tableService.performAction(Action.CHECK)
-    tableService.performAction(Action.CHECK)
+    tableService.performAction({ type: ActionType.CHECK })
+    tableService.performAction({ type: ActionType.CHECK })
     expect(tableService.communityCards.length).to.equal(5)
     expect(tableService.state).to.equal(5)
     expect(tableService.pot).to.equal(0)

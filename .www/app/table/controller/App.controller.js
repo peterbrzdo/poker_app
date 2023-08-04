@@ -93,9 +93,15 @@ sap.ui.define([
       }
     },
 
-    async action(action, ...args) {
+    async action(type, amount) {
       try {
-        await table.action(action, ...args)
+        const action = {
+          type
+        }
+        if (type === 'RAISE') {
+          action.amount = amount
+        }
+        await table.action(action)
       } catch ({ message, stack }) {
         console.error(stack)
         MessageBox.error(message)
