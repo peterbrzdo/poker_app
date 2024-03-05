@@ -1,11 +1,12 @@
-import { ICard, IPlayer, PlayerState } from './types'
+import Card from './card'
+import { PlayerState } from './types'
 
-export default class Player implements IPlayer {
+export default class Player {
   private _id = ''
   private _name = ''
   private _cash = 0
   private _state: PlayerState
-  private _cards: ICard[] = []
+  private _cards: Card[] = []
 
   constructor(id: string, name: string, cash: number) {
     this._id = id
@@ -38,7 +39,7 @@ export default class Player implements IPlayer {
     return this._cards
   }
 
-  addCard(card: ICard) {
+  addCard(card: Card) {
     this._cards = [...this._cards, card]
   }
 

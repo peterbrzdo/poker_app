@@ -1,19 +1,13 @@
-import { State, ITableService, Suit, Rank, Action } from './types'
+import { State, Suit, Rank, Action } from './types'
 import Player from './player'
 import Card from './card'
+import Deck from './deck'
 import { IllegalActionError, IllegalAmountError } from './errors'
 
-export default class TableService implements ITableService {
-  private static instance: ITableService | null = null
 
-  static getInstance() {
-    if (!TableService.instance) {
-      TableService.instance = new TableService(/* options */)
-    }
-    return TableService.instance
-  }
+export default class TableService {
 
-  constructor(/* options */) {
+  constructor(private deck: Deck) {
     // TODO: implement
   }
 

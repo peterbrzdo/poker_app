@@ -1,6 +1,6 @@
-import { ICard, Suit, Rank } from './types'
+import { Suit, Rank } from './types'
 
-export default class Card implements ICard {
+export default class Card {
   static SUITS = [Suit.Spades, Suit.Hearts, Suit.Diamonds, Suit.Clubs]
   static RANKS = [Rank.Two, Rank.Three, Rank.Four, Rank.Five, Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace]
 
@@ -20,7 +20,7 @@ export default class Card implements ICard {
     return this._suit
   }
 
-  compareTo(card: ICard) {
+  compareTo(card: Card) {
     return Card.RANKS.indexOf(this._rank) - Card.RANKS.indexOf(card.rank)
   }
 

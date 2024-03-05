@@ -1,4 +1,5 @@
-import type { ICard, CardPropertyType, Suit, Rank, BestHandType } from './types'
+import Card from './card'
+import type { CardPropertyType, Suit, Rank, BestHandType } from './types'
 
 export default class BestHand {
   static HIGHEST_CARD = 'HIGHEST_CARD'
@@ -11,11 +12,11 @@ export default class BestHand {
   static FOUR_OF_A_KIND = 'FOUR_OF_A_KIND'
   static STRAIGHT_FLUSH = 'STRAIGHT_FLUSH'
   static ROYAL_FLUSH = 'ROYAL_FLUSH'
-  private cards: ICard[]
-  private cardsByRanks: Map<Rank, ICard[]>
-  private cardsBySuits: Map<Suit, ICard[]>
+  private cards: Card[]
+  private cardsByRanks: Map<Rank, Card[]>
+  private cardsBySuits: Map<Suit, Card[]>
 
-  constructor(playerCards: ICard[], communityCards: ICard[]) {
+  constructor(playerCards: Card[], communityCards: Card[]) {
     this.cards = [...playerCards, ...communityCards].sort((card1, card2) => {
       return card2.compareTo(card1)
     })
@@ -47,7 +48,7 @@ export default class BestHand {
     const royalFlushCards = this.possibleStraights()[0].reduce((cards, rank) => {
       const foundCards = this.cards.filter((c) => c.rank === rank)
       return [...cards, ...foundCards]
-    }, [] as ICard[]).filter((c) => c.suit === suit)
+    }, [] as Card[]).filter((c) => c.suit === suit)
     return royalFlushCards.length === 5 ? {
       type: BestHand.ROYAL_FLUSH,
       hand: royalFlushCards
@@ -63,11 +64,11 @@ export default class BestHand {
       return straightVariant.reduce((cards, rank) => {
         const foundCards = this.cards.filter((c) => c.rank === rank)
         return [...cards, ...foundCards]
-      }, [] as ICard[])
+      }, [] as Card[])
     })
       .map((cardList) => {
         const cardListWithSuit = cardList.filter((c) => c.suit === suit)
-        return [cardListWithSuit.length, cardListWithSuit] as [number, ICard[]]
+        return [cardListWithSuit.length, cardListWithSuit] as [number, Card[]]
       })
       .filter(([length]) => length >= 5)
 
@@ -109,7 +110,7 @@ export default class BestHand {
         const card = this.cards.find((c) => c.rank === rank)
         if (card) return [...cards, card]
         return cards
-      }, [] as ICard[])
+      }, [] as Card[])
     }).filter((cards) => cards.length === 5)
 
     return straightCards.length ? {
@@ -195,7 +196,7 @@ export default class BestHand {
     ]
   }
 
-  private fillUpWithHighestCards = (relevantCards: ICard[]) => {
+  private fillUpWithHighestCards = (relevantCards: Card[]) => {
     const remainingCards = this.cards.filter((card) => {
       return !relevantCards.find((relevantCard) => {
         return relevantCard.suit === card.suit && relevantCard.rank === card.rank

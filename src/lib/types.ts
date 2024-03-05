@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import Card from './card'
 
 export enum ActionType {
   CHECK = 'CHECK',
@@ -50,45 +51,12 @@ export enum Rank {
 
 export type CardPropertyType = 'suit' | 'rank'
 
-export interface ICard {
-  suit: Suit
-  rank: Rank
-  compareTo: (card: ICard) => number
-  toJSON: () => { rank: Rank, suit: Suit }
-}
-
 export enum PlayerState {
   Active = 'active',
   Inactive = 'inactive'
 }
 
-export interface IPlayer {
-  readonly id: string
-  readonly name: string
-  readonly cash: number
-  readonly state: PlayerState
-  readonly cards: ICard[]
-  addCard: (card: ICard) => void
-  addCash: (amount: number) => void
-  deductCash: (amount: number) => void
-}
-
-export interface ITableService {
-  readonly state: State
-  readonly players: IPlayer[]
-  readonly communityCards: ICard[]
-  readonly currentPlayer: IPlayer | null
-  readonly bets: Map<string, number>
-  readonly pot: number
-  readonly winner: IPlayer | null
-  readonly winnerHand: ICard[]
-  start: () => void
-  addPlayer: ({ id, name }: { id: string, name: string }) => void
-  performAction: (action: Action) => void
-  getPlayerCards: (playerId: string) => ICard[]
-}
-
 export type BestHandType = {
   type: string
-  hand: ICard[]
+  hand: Card[]
 }
