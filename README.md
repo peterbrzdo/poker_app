@@ -20,7 +20,7 @@ You can then browse to <http://localhost:3000/>
 
       Can be used as it is.
 
-  - `lib/deck.ts` contains the code for the `Deck` class
+  - `lib/deck.ts` contains the code for the `Standard52CardsDeck` class
 
       Can be used as it is.
 

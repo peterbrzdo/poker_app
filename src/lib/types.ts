@@ -60,3 +60,8 @@ export type BestHandType = {
   type: string
   hand: Card[]
 }
+
+export interface Deck {
+  cards: Card[]
+  draw: (count: number) => Card[]
+}

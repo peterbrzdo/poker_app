@@ -1,6 +1,6 @@
 import { ActionType } from '../src/lib/types'
 import { expect } from 'chai'
-import { Card, Deck, Player, TableService } from '../src/index'
+import { Card, Standard52CardsDeck, Player, TableService } from '../src/index'
 import { Suit, Rank } from '../src/lib/types'
 import { IllegalActionError } from '../src/lib/errors'
 
@@ -30,7 +30,7 @@ describe('Player smoketest', () => {
 
 describe('TableService smoketest', () => {
   it('should set newly joined players to inactive and distribute 100 cash', () => {
-    const tableService = new TableService(new Deck())
+    const tableService = new TableService(new Standard52CardsDeck())
     tableService.addPlayer({ id: 'al-capone', name: 'Al Capone' })
     const players = tableService.players
 
@@ -39,7 +39,7 @@ describe('TableService smoketest', () => {
   })
 
   it('should have the right interface', () => {
-    const tableService = new TableService(new Deck())
+    const tableService = new TableService(new Standard52CardsDeck())
     expect(tableService.state).to.equal(0)
     expect(tableService.players).to.eql([])
     expect(tableService.getPlayerCards('')).to.eql([])
@@ -52,7 +52,7 @@ describe('TableService smoketest', () => {
   })
 
   it('should end the game if all but 1 player fold', () => {
-    const tableService = new TableService(new Deck())
+    const tableService = new TableService(new Standard52CardsDeck())
     tableService.addPlayer({ id: 'al-capone', name: 'Al Capone' })
     tableService.addPlayer({ id: 'pat-garret', name: 'Pat Garret' })
     tableService.start()
@@ -64,7 +64,7 @@ describe('TableService smoketest', () => {
 
   it('should play an entire round with 2 players', () => {
     // Setup
-    const tableService = new TableService(new Deck())
+    const tableService = new TableService(new Standard52CardsDeck())
     tableService.addPlayer({ id: 'al-capone', name: 'Al Capone' })
     expect(tableService.getPlayerCards('al-capone').length).to.equal(0)
     expect(tableService.state).to.equal(0)

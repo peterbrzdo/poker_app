@@ -1,7 +1,6 @@
-import { State, Suit, Rank, Action } from './types'
+import { State, Suit, Rank, Action, Deck } from './types'
 import Player from './player'
 import Card from './card'
-import Deck from './deck'
 import { IllegalActionError, IllegalAmountError } from './errors'
 
 

@@ -1,6 +1,7 @@
 import Card from './card'
+import { Deck } from './types'
 
-export default class Deck {
+export default class Standard52CardsDeck implements Deck {
   private _cards: Card[] = []
 
   constructor() {

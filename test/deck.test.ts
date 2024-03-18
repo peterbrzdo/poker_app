@@ -1,16 +1,16 @@
 import { expect } from 'chai'
-import { Deck, Card } from '../src/index'
+import { Standard52CardsDeck, Card } from '../src/index'
 
-describe('Deck', function () {
-  let deck: Deck
+describe('Standard52CardsDeck', function () {
+  let deck: Standard52CardsDeck
 
   beforeEach(function () {
-    deck = new Deck()
+    deck = new Standard52CardsDeck()
   })
 
   describe('constructor()', function () {
     it('should create an instance', function () {
-      expect(deck).to.be.an.instanceof(Deck)
+      expect(deck).to.be.an.instanceof(Standard52CardsDeck)
     })
   })
 
