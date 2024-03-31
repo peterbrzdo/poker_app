@@ -5,17 +5,17 @@ import { IllegalActionError, IllegalAmountError } from './errors'
 
 
 export default class TableService {
-
-  constructor(private deck: Deck) {
-    // TODO: implement
+  private _deck: Deck
+  constructor(deck: Deck) {
+    this._deck = deck
   }
 
-  get state() {
+  get state(): State {
     // TODO: implement
     return State.ENDED
   }
 
-  get players() {
+  get players(): Player[] {
     // TODO: implement
     // no players yet
     // return []
@@ -26,7 +26,7 @@ export default class TableService {
     ]
   }
 
-  getPlayerCards(playerId: string) {
+  getPlayerCards(playerId: string): Card[] {
     // TODO: implement
     // no player cards yet
     // return []
@@ -36,7 +36,7 @@ export default class TableService {
     ]
   }
 
-  get communityCards() {
+  get communityCards(): Card[] {
     // TODO: implement
     // no community cards yet
     // return []
@@ -49,14 +49,14 @@ export default class TableService {
     ]
   }
 
-  get currentPlayer() {
+  get currentPlayer(): Player {
     // TODO: implement
     // no current player yet
     // return null
     return new Player('al-capone', 'Al Capone', 100)
   }
 
-  get bets() {
+  get bets(): Map<string, number> {
     // TODO: implement
     // no bets yet
     // return new Map()
@@ -67,19 +67,19 @@ export default class TableService {
     ])
   }
 
-  get pot() {
+  get pot(): number {
     // TODO: implement
     return 15
   }
 
-  get winner() {
+  get winner(): Player | null {
     // TODO: implement
     // no winner yet
     // return null
     return new Player('al-capone', 'Al Capone', 95)
   }
 
-  get winnerHand() {
+  get winnerHand(): Card[] {
     // TODO: implement
     // no winner hand yet
     // return []

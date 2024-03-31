@@ -7,6 +7,11 @@ type SortedPlayersWithScores = {
   score: number
 }[]
 
+type WinnersWithHands = {
+  winner: Player;
+  winningHand: Card[];
+}[]
+
 export default class Winners {
   private players: Player[] = []
   private playerCards: Card[][] = []
@@ -18,7 +23,7 @@ export default class Winners {
     this.communityCards = communityCards
   }
 
-  determine() {
+  determine(): WinnersWithHands {
     const sortedPlayersWithScores = this.sortedPlayersWithScores()
 
     return this.winnersWithSameScores(sortedPlayersWithScores)
