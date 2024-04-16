@@ -1,12 +1,12 @@
 import { assert, expect } from 'chai' // CHOICE: use assert or expect
-import { TableService, Player } from '../src/index'
+import { TableService, Player, Standard52CardsDeck } from '../src/index'
 
 // TODO: implement proper unit tests
 describe('TableService', function () {
   let tableService: TableService
 
   this.beforeEach(function () {
-    tableService = new TableService(/* options */)
+    tableService = new TableService(new Standard52CardsDeck())
   })
 
   describe('players', function () {

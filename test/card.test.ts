@@ -1,9 +1,8 @@
-import type { ICard } from '../src/lib/types'
 import { expect } from 'chai'
 import { Card } from '../src/index'
 
 describe('Card', function () {
-  let card: ICard
+  let card: Card
 
   beforeEach(function () {
     const suit = Card.SUITS[1]

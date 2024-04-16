@@ -1,25 +1,29 @@
 import type { BestHandType } from './types'
-import { BestHand, Handscore } from '../index'
-import { ICard, IPlayer } from './types'
+import { BestHand, Handscore, Player, Card } from '../index'
 
 type SortedPlayersWithScores = {
-  player: IPlayer,
+  player: Player,
   bestHand: BestHandType,
   score: number
 }[]
 
-export default class Winners {
-  private players: IPlayer[] = []
-  private playerCards: ICard[][] = []
-  private communityCards: ICard[] = []
+type WinnersWithHands = {
+  winner: Player;
+  winningHand: Card[];
+}[]
 
-  constructor(players: IPlayer[], playerCards: ICard[][], communityCards: ICard[]) {
+export default class Winners {
+  private players: Player[] = []
+  private playerCards: Card[][] = []
+  private communityCards: Card[] = []
+
+  constructor(players: Player[], playerCards: Card[][], communityCards: Card[]) {
     this.players = players
     this.playerCards = playerCards
     this.communityCards = communityCards
   }
 
-  determine() {
+  determine(): WinnersWithHands {
     const sortedPlayersWithScores = this.sortedPlayersWithScores()
 
     return this.winnersWithSameScores(sortedPlayersWithScores)

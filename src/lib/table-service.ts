@@ -1,28 +1,19 @@
-import { State, ITableService, Suit, Rank, Action } from './types'
+import { State, Suit, Rank, Action, Deck } from './types'
 import Player from './player'
 import Card from './card'
 import { IllegalActionError, IllegalAmountError } from './errors'
 
-export default class TableService implements ITableService {
-  private static instance: ITableService | null = null
 
-  static getInstance() {
-    if (!TableService.instance) {
-      TableService.instance = new TableService(/* options */)
-    }
-    return TableService.instance
+export default class TableService {
+  constructor(private deck: Deck) {
   }
 
-  constructor(/* options */) {
-    // TODO: implement
-  }
-
-  get state() {
+  get state(): State {
     // TODO: implement
     return State.ENDED
   }
 
-  get players() {
+  get players(): Player[] {
     // TODO: implement
     // no players yet
     // return []
@@ -33,7 +24,7 @@ export default class TableService implements ITableService {
     ]
   }
 
-  getPlayerCards(playerId: string) {
+  getPlayerCards(playerId: string): Card[] {
     // TODO: implement
     // no player cards yet
     // return []
@@ -43,7 +34,7 @@ export default class TableService implements ITableService {
     ]
   }
 
-  get communityCards() {
+  get communityCards(): Card[] {
     // TODO: implement
     // no community cards yet
     // return []
@@ -56,14 +47,14 @@ export default class TableService implements ITableService {
     ]
   }
 
-  get currentPlayer() {
+  get currentPlayer(): Player {
     // TODO: implement
     // no current player yet
     // return null
     return new Player('al-capone', 'Al Capone', 100)
   }
 
-  get bets() {
+  get bets(): Map<string, number> {
     // TODO: implement
     // no bets yet
     // return new Map()
@@ -74,19 +65,19 @@ export default class TableService implements ITableService {
     ])
   }
 
-  get pot() {
+  get pot(): number {
     // TODO: implement
     return 15
   }
 
-  get winner() {
+  get winner(): Player | null {
     // TODO: implement
     // no winner yet
     // return null
     return new Player('al-capone', 'Al Capone', 95)
   }
 
-  get winnerHand() {
+  get winnerHand(): Card[] {
     // TODO: implement
     // no winner hand yet
     // return []

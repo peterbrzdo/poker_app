@@ -1,4 +1,3 @@
-import type { ICard } from '../src/lib/types'
 import { expect } from 'chai'
 import { Card, Player, Winners } from '../src/index'
 import { Suit, Rank } from '../src/lib/types'
@@ -8,7 +7,7 @@ describe('Winners', () => {
     return cardTuples.map(([suit, rank]) => new Card(suit, rank))
   }
 
-  const json = (cardTuples: ICard[]) => {
+  const json = (cardTuples: Card[]) => {
     return JSON.stringify(cardTuples)
   }
 
@@ -16,7 +15,7 @@ describe('Winners', () => {
     return JSON.stringify(buildCards(cardTuples))
   }
 
-  const buildPlayerAndPlayerCards = (handCardTuples: [Suit, Rank][], id = 'al-capone'): [Player, ICard[]] => {
+  const buildPlayerAndPlayerCards = (handCardTuples: [Suit, Rank][], id = 'al-capone'): [Player, Card[]] => {
     const player = new Player(id, 'Al Capone', 95)
     const cards = handCardTuples.map(([suit, rank]) => new Card(suit, rank))
     return [player, cards]

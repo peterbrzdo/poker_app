@@ -1,7 +1,7 @@
-import { TableService } from '../src/index'
+import { TableService, Standard52CardsDeck } from '../src/index'
 import application from './application'
 
-const tableService = TableService.getInstance()
+const tableService = new TableService(new Standard52CardsDeck())
 
 const { PORT = 3000 } = process.env
 

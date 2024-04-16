@@ -1,17 +1,19 @@
 import express, { type Response } from 'express'
-import type { IPlayer, ICard, ITableService } from '../../src/lib/types'
 import { Action } from '../../src/lib/types'
+import Player from '../../src/lib/player'
+import TableService from '../../src/lib/table-service'
+import Card from '../../src/lib/card'
 
-const playerToObject = (player: IPlayer | null) => {
+const playerToObject = (player: Player | null) => {
   if (!player) {
     return null
   }
   const { id, name, cash } = player
   return { id, name, cash }
 }
-const cardToObject = ({ suit, rank }: ICard) => ({ suit, rank })
+const cardToObject = ({ suit, rank }: Card) => ({ suit, rank })
 
-export default (tableService: ITableService) => {
+export default (tableService: TableService) => {
   const router = express.Router()
 
   const createSnapshot = (userId: string) => {

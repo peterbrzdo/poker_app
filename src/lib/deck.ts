@@ -1,8 +1,8 @@
-import type { ICard } from './types'
 import Card from './card'
+import { Deck } from './types'
 
-export default class Deck {
-  private _cards: ICard[] = []
+export default class Standard52CardsDeck implements Deck {
+  private _cards: Card[] = []
 
   constructor() {
     this.init()
