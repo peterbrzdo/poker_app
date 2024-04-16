@@ -8,7 +8,7 @@
             <ToolbarSpacer />
             <core:Icon src="sap-icon://person-placeholder" />
             <Text text="{/player/name}" />
-            <Button icon="sap-icon://log" press="logout" />
+            <!-- <Button icon="sap-icon://log" press="logout" /> -->
           </OverflowToolbar>
         </headerContent>
         <content>

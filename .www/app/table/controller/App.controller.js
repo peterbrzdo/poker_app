@@ -16,12 +16,28 @@ sap.ui.define([
     },
 
     async _init() {
-      // get current table data
-      await this._updateModel()
+      let payload = await table.fetch()
+      this._updateModel(payload)
+
       // join table if not already joined
       await this._joinTable()
-      // start polling for table updates
-      setInterval(() => this._updateModel(), 1000)
+
+      this._subscribeServerEvent()
+    },
+
+    _subscribeServerEvent() {
+      if (!this.events) {
+        this.events = new EventSource('/api/v1/events')
+
+        this.events.onmessage = (event) => {
+          const payload = JSON.parse(event.data)
+          this._updateModel(payload)
+        }
+
+        this.events.onopen = () => {
+          console.log('Opened event stream')
+        }
+      }
     },
 
     _getPlayer() {
@@ -36,10 +52,10 @@ sap.ui.define([
       return player
     },
 
-    async _updateModel() {
+    _updateModel(payload) {
       try {
         const player = this._getPlayer()
-        const { state, currentPlayer, players, bets, pot, communityCards, playerCards, winner, winnerHand } = await table.fetch()
+        const { state, currentPlayer, players, bets, pot, communityCards, playerCards, winner, winnerHand } = payload
         const view = this.getView()
         const model = view.getModel()
         model.setProperty('/', Object.assign({}, model.getProperty('/'), {
@@ -77,6 +93,8 @@ sap.ui.define([
         const { player, players } = model.getProperty('/')
         if (!players.find(({ name }) => name === player.name)) {
           await table.join()
+          const payload = await table.fetch()
+          this._updateModel(payload)
         }
       } catch ({ message, stack }) {
         console.error(stack)
@@ -106,10 +124,6 @@ sap.ui.define([
         console.error(stack)
         MessageBox.error(message)
       }
-    },
-
-    logout() {
-      window.location.replace(`${window.location.origin}/login`)
     }
   })
 })

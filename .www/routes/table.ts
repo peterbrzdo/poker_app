@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { type Response } from 'express'
 import { Action } from '../../src/lib/types'
 import Player from '../../src/lib/player'
 import TableService from '../../src/lib/table-service'
@@ -16,11 +16,10 @@ const cardToObject = ({ suit, rank }: Card) => ({ suit, rank })
 export default (tableService: TableService) => {
   const router = express.Router()
 
-  // get game details
-  router.get('/', (req, res, next) => {
+  const createSnapshot = (userId: string) => {
     const { state, players, currentPlayer, communityCards, bets, pot, winner, winnerHand } = tableService
-    const playerCards = tableService.getPlayerCards(req.user!.id)
-    const snapshot = {
+    const playerCards = tableService.getPlayerCards(userId)
+    return {
       state,
       players: players.map(playerToObject),
       currentPlayer: playerToObject(currentPlayer),
@@ -31,15 +30,27 @@ export default (tableService: TableService) => {
       winner: playerToObject(winner),
       winnerHand: winnerHand.map(cardToObject)
     }
+  }
+
+  const sendEventToClients = () => {
+    clients.forEach((client) => {
+      const snapshot = createSnapshot(client.id)
+      client.res.write(`event: message\ndata:${JSON.stringify(snapshot)}\n\n`)
+    })
+  }
+
+  // get game details
+  router.get('/', (req, res, next) => {
     res
       .status(200)
-      .json(snapshot)
+      .json(createSnapshot(req.user!.id))
   })
 
   // join game
   router.post('/players', (req, res, next) => {
     const { id, name } = req.user!
     tableService.addPlayer({ id, name })
+    sendEventToClients()
     res
       .status(204)
       .end()
@@ -48,6 +59,8 @@ export default (tableService: TableService) => {
   // start game
   router.post('/start', (req, res, next) => {
     tableService.start()
+    sendEventToClients()
+
     res
       .status(204)
       .end()
@@ -58,6 +71,7 @@ export default (tableService: TableService) => {
     const result = Action.safeParse(req.body)
     if (result.success) {
       tableService.performAction(result.data)
+      sendEventToClients()
       res
         .status(204)
         .end()
@@ -66,6 +80,32 @@ export default (tableService: TableService) => {
         error: 'Invalid action definition'
       })
     }
+  })
+
+  type Client = {
+    id: string,
+    res: Response
+  }
+
+  let clients: Client[] = []
+  router.get('/events', (req, res) => {
+    const clientId = req.user!.id
+    const headers = {
+      'Content-Type': 'text/event-stream',
+      'Connection': 'keep-alive',
+      'Cache-Control': 'no-cache'
+    }
+    res.writeHead(200, headers)
+
+    clients.push({
+      id: clientId,
+      res
+    })
+
+    req.on('close', () => {
+      console.log(`${clientId}: Connection closed`)
+      clients = clients.filter(client => client.id !== clientId)
+    })
   })
 
   return router
