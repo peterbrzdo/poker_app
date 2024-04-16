@@ -5,9 +5,7 @@ import { IllegalActionError, IllegalAmountError } from './errors'
 
 
 export default class TableService {
-  private _deck: Deck
-  constructor(deck: Deck) {
-    this._deck = deck
+  constructor(private deck: Deck) {
   }
 
   get state(): State {
