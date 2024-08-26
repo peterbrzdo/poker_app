@@ -1,5 +1,6 @@
-import { assert, expect } from 'chai' // CHOICE: use assert or expect
+import { expect } from 'chai' // CHOICE: use assert or expect
 import { TableService, Player, Standard52CardsDeck } from '../src/index'
+import { State } from '../src/lib/types'
 
 // TODO: implement proper unit tests
 describe('TableService', function () {
@@ -24,6 +25,13 @@ describe('TableService', function () {
         expect(actualName).to.eql(expectedName)
         expect(actualCash).to.eql(expectedCash)
       }
+    })
+  })
+  describe('state', function() {
+    it('should return a state of the game', function () { 
+      const expectedState = State.OPEN;
+      const actualState = tableService.state;
+      expect(actualState).to.eql(expectedState);
     })
   })
 })
