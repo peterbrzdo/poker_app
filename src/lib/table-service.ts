@@ -77,6 +77,7 @@ export default class TableService {
     if (this._current_player == this._players.length) {
       this._current_player = 0;
     }
+    console.log(this._players[this._current_player]);
     return this._players[this._current_player];
   }
 
@@ -127,7 +128,7 @@ export default class TableService {
     let counter = 0;
     this._state = State.PRE_FLOP
     if ( this._players.length < 1 ) {
-      console.log(this._players.length);
+      //console.log(this._players.length);
       throw new NotEnoughPlayers;
     }
     else {
