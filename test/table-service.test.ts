@@ -8,7 +8,7 @@ describe('TableService', function () {
 
   this.beforeEach(function () {
     tableService = new TableService(new Standard52CardsDeck())
-    tableService.addPlayer({1,'Player1'});
+    tableService.addPlayer({id: '1', name:'Player1'});
     tableService.start();
   })
 

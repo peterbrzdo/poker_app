@@ -45,13 +45,14 @@ export default class TableService {
     //   new Card(Suit.Spades, Rank.Ace),
     //   new Card(Suit.Hearts, Rank.Ace)
     // ]
-    this._players.forEach( player => {
-      if ( player.id == playerId ) {
-        return player.cards;
-      }
+    
+    const index = parseInt(playerId);
 
-    });
-    return [];
+    console.log(playerId);
+    console.log(index);
+
+    const item = this._players.find(item => item.id === playerId); 
+    return item?.cards;
   }
 
   get communityCards(): Card[] {
@@ -74,7 +75,7 @@ export default class TableService {
     // no current player yet
     // return null
     //return new Player('al-capone', 'Al Capone', 100)
-    if (this._current_player == this._players.length) {
+   if (this._current_player == this._players.length) {
       this._current_player = 0;
     }
     console.log(this._players[this._current_player]);
@@ -127,13 +128,15 @@ export default class TableService {
     // TODO: implement
     let counter = 0;
     this._state = State.PRE_FLOP
-    if ( this._players.length < 1 ) {
+    if ( this._players.length < 2 ) {
       //console.log(this._players.length);
       throw new NotEnoughPlayers;
     }
     else {
       this._players.forEach( player => {
         player.state = PlayerState.Active;
+        player.addCard(this._cards[counter]);
+        counter++;
         player.addCard(this._cards[counter]);
         counter++;
       });
