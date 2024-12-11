@@ -11,6 +11,7 @@ export default class TableService {
   private _cards: Card[] = [];
   private _standard52CardsDeck : Standard52CardsDeck;
   private _current_player: number = 0;
+  private _players_count: number = 0;
 
   constructor(private deck: Deck) {
     this._state = State.OPEN
@@ -45,15 +46,12 @@ export default class TableService {
     //   new Card(Suit.Spades, Rank.Ace),
     //   new Card(Suit.Hearts, Rank.Ace)
     // ]
-    
-    const index = parseInt(playerId);
-
-    console.log(playerId);
-    console.log(index);
-
-    const item = this._players.find(item => item.id === playerId); 
-    return item?.cards;
-  }
+    const player = this._players.find(p => p.id === playerId);
+    if (player) {
+      return player.cards;
+    }
+    return [];
+}
 
   get communityCards(): Card[] {
     // TODO: implement
@@ -146,23 +144,28 @@ export default class TableService {
   addPlayer({ id, name }: { id: string, name: string }) {
     // TODO: implement
     this._players.push(new Player( id, name, 100))
+    this._players_count++;
     return {id: id, name: name}
+  }
+
+  nextPlayer()
+  {
+    this._current_player++;
+    if (this._current_player > this._players_count)
+      this._current_player = 0;
   }
 
   performAction(action: Action) {
     // TODO: implement
     switch(action.type){
       case ActionType.CHECK:
-        console.log('performAction CHECK..');
-        this._current_player++;
+        this.nextPlayer();
         break;
       case ActionType.FOLD:
-        console.log('performAction FOLD..');
-        this._current_player++;
+        this.nextPlayer();
         break;
       case ActionType.CALL:
-        console.log('performAction CALL..');
-        this._current_player++;
+        this.nextPlayer();
         break;
 
     }
