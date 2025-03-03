@@ -20,6 +20,8 @@ export default class TableService {
     this._current_player = 0;
   }
 
+  //test
+
   get state(): State {
     // TODO: implement
     //return State.ENDED
