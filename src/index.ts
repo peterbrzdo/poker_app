@@ -7,5 +7,3 @@ import BestHand from './lib/best-hand'
 import Handscore from './lib/handscore'
 
 export { BestHand, Card, Standard52CardsDeck, Handscore, Player, TableService, Winners }
-
-//comment
